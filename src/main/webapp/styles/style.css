@@ -24,8 +24,8 @@
 	display: inline;
 }
 .center_block {
+	width: 500px;
   	border-radius: 13px;
-	width:30%;
 	position:absolute;
 	left: 50%;
 	margin-right: -50%;
@@ -37,6 +37,7 @@
 
 }
 .center_top{
+	width: 502px;
 	height: 50px;
 	min-width: 502px;
 	background-color:#204969; 
@@ -44,6 +45,7 @@
 	border-top-right-radius: 12px;
 }
 .center_border{
+	width: 500px;
 	min-width: 500px;
 	min-height: 500px;
 	background:white;
@@ -105,6 +107,19 @@ input[type=text]:hover {
 	text-align:left;
 	font-family:Courier New, italic;
 	font-size: 24px;
+	color: #204969
+}
+.text{
+	text-align:center;
+	font-family:Courier New, italic;
+	font-size: 24px;
+	color: #204969
+}
+.error{
+	text-align:center;
+	font-family:Courier New, italic;
+	font-size: 24px;
+	color: #A80038
 }
 
 

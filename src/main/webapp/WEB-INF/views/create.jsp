@@ -10,6 +10,7 @@
 <spring:message key="create.form.message" var="profile_message"/>
 <spring:message key="all.head.profile" var="profile"/>
 <spring:message key="submit" var="submit"/>
+
 <spring:message key="head.create.profile" var="head_createp_rofile"/>
 <spring:message key="head.profile" var="head_profile"/>
 <spring:message key="head.log_out" var="head_log_out"/>
@@ -47,12 +48,16 @@
 <div class = "center_block">
     <div class="center_top"></div>
     <div class = "center_border">
-            <h4 style="text-align:center;font-family:Courier New, italic;font-size: 24px;color: #204969">
+
                 <c:choose>
-                    <c:when test="${not empty error_message}">${error_message.message}</c:when>
-                    <c:otherwise>${profile_message}</c:otherwise>
+                    <c:when test="${not empty error_message}">
+                    <h4 class="${error_message.type}">${error_message.message}</h4>
+                    </c:when>
+                    <c:otherwise>
+                        <h4 class="text">${profile_message}</h4>
+                    </c:otherwise>
                 </c:choose>
-            </h4>
+
             <div class = "form_block">
                 <form:form method="post" modelAttribute="user" >
                     <form:input path="email" id="email" name = "email" placeholder="${mail}"/>
@@ -79,7 +84,7 @@
 <script language="javascript" type="text/javascript">
     function openProfile()
     {
-        window.open("profile.jsp","_self");
+        window.open("/profile","_self");
     }
     function openMain()
     {
@@ -87,11 +92,11 @@
     }
     function openLogIn()
     {
-        window.open("log_in.jsp","_self");
+        window.open("/login","_self");
     }
     function openLogOut()
     {
-        window.open("log_out","_self");
+        window.open("/logout","_self");
     }
     function openCreate()
     {

@@ -77,7 +77,7 @@
     }
     function openLogIn()
     {
-        window.open("log_in.jsp","_self");
+        window.open("login.jsp","_self");
     }
     function openLogOut()
     {

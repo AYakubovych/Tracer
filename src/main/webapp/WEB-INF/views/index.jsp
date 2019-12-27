@@ -41,7 +41,7 @@
 <script language="javascript" type="text/javascript">
     function openProfile()
     {
-        window.open("profile.jsp","_self");
+        window.open("/profile","_self");
     }
     function openMain()
     {
@@ -49,14 +49,14 @@
     }
     function openLogIn()
     {
-        window.open("/create","_self");
+        window.open("/login","_self");
     }
     function openLogOut()
     {
-        window.open("log_out","_self");
+        window.open("/logout","_self");
     }
     function openCreate()
     {
-        window.open("/create","_self")
+        window.open("/create","_self");
     }
 </script>

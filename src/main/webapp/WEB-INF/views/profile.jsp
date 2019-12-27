@@ -1,10 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="ddns.net.entities.User" %>
-<%@ page import="ddns.net.service.UserServiceImpl" %>
+<spring:message key="head.create.profile" var="head_createp_rofile"/>
+<spring:message key="head.profile" var="head_profile"/>
+<spring:message key="head.log_out" var="head_log_out"/>
+<spring:message key="head.log_in" var="head_log_in"/>
+<spring:message key="personal.data" var="personal_data"/>
+<spring:message key="name" var="name"/>
+<spring:message key="last.name" var="surname"/>
+<spring:message key="mail" var="mail"/>
+
+<spring:message key="child.mail" var="child_mail"/>
+<spring:message key="child.pass" var="child_pass"/>
+<spring:message key="submit" var="submit"/>
+
 <html>
 <head>
     <title>Profile</title>
-    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../styles/style.css">
 </head>
 <body style="background-color:#F2F2F2;">
 
@@ -35,6 +49,27 @@
         <div class = "center_border">
             <div class="text_box">
 
+                <h4 class="in_box_text">${personal_data}</h4>
+                <h4 class="in_box_text">${name}: ${user.name}</h4>
+                <h4 class="in_box_text">${surname}: ${user.last_name}</h4>
+                <h4 class="in_box_text">${mail}: ${user.email}</h4>
+
+                <c:choose>
+                    <c:when test="${user.child_id != null && user.child_id != 0}">
+                        <h4 class="in_box_text">${child.name}</h4>
+                        <button class="submit_button" onclick="">In progress</button>
+                    </c:when>
+                    <c:otherwise>
+                        <form:form method="post" modelAttribute="child" >
+                            <form:input path="name" id="email" name = "email" placeholder="${child_mail}"/>
+
+                            <form:password path="pass" id="pass" name="pass" placeholder="${child_pass}"/>
+
+                            <button class="submit_button" type="submit">${submit}</button>
+
+                        </form:form>
+                    </c:otherwise>
+                </c:choose>
 
             </div>
         </div>
@@ -46,22 +81,26 @@
 <script language="javascript" type="text/javascript">
     function openProfile()
     {
-        window.open("profile.jsp","_self");
+        window.open("/profile","_self");
     }
     function openMain()
     {
-        window.open("index.jsp","_self");
+        window.open("/","_self");
     }
     function openLogIn()
     {
-        window.open("log_in.jsp","_self");
+        window.open("/login","_self");
     }
     function openLogOut()
     {
-        window.open("log_out","_self");
+        window.open("/logout","_self");
     }
     function openCreate()
     {
-        window.open("create.jsp","_self");
+        window.open("/create","_self");
+    }
+    function openMap()
+    {
+        window.open("/map","_self");
     }
 </script>
