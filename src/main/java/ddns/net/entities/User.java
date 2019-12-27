@@ -38,8 +38,9 @@ public class User implements Serializable {
     @Column(name = "pass")
     private String pass;
 
-    @Column(name = "child_id")
-    private int child_id;
+    @OneToOne
+    @JoinColumn(name = "child_id")
+    private Child child;
 
 
     public User(){}
@@ -51,7 +52,13 @@ public class User implements Serializable {
         this.pass = pass;
     }
 
+    public Child getChild() {
+        return child;
+    }
 
+    public void setChild(Child child) {
+        this.child = child;
+    }
 
     public int getId() {
         return id;
@@ -91,14 +98,6 @@ public class User implements Serializable {
 
     public void setPass(String pass) {
         this.pass = pass;
-    }
-
-    public int getChild_id() {
-        return child_id;
-    }
-
-    public void setChild_id(int child_id) {
-        this.child_id = child_id;
     }
 
     @Override

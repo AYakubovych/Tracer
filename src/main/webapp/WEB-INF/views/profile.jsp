@@ -55,8 +55,8 @@
                 <h4 class="in_box_text">${mail}: ${user.email}</h4>
 
                 <c:choose>
-                    <c:when test="${user.child_id != null && user.child_id != 0}">
-                        <h4 class="in_box_text">${child.name}</h4>
+                    <c:when test="${user.child != null}">
+                        <h4 class="in_box_text">${user.child.name}</h4>
                         <button class="submit_button" onclick="">In progress</button>
                     </c:when>
                     <c:otherwise>

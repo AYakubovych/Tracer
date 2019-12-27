@@ -33,10 +33,7 @@ public class ProfileController {
             if(cookie.getName().equals("id")){
                 user = userService.findOneById(Integer.parseInt(cookie.getValue()));
                 model.addAttribute("user",user);
-                if(user.getChild_id() > 0){
-                    Child child = childService.findOneById(user.getChild_id());
-                    model.addAttribute("child",child);
-                }
+                
                 return new ModelAndView("profile");
             }
         }
@@ -54,7 +51,7 @@ public class ProfileController {
 
                 Child child_check = childService.findOneByName(child.getName());
                 if(child_check.getPass().equals(child.getPass())){
-                    user.setChild_id(child_check.getId());
+                    user.setChild(child_check);
                     userService.save(user);
 
                     return new ModelAndView("redirect:/profile");
