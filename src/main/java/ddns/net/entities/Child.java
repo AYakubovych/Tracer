@@ -18,6 +18,7 @@ public class Child implements  Serializable {
     @Column(name = "pass")
     private String pass;
 
+
     public Child(){}
 
     public Child(String name, String pass) {
@@ -48,4 +49,10 @@ public class Child implements  Serializable {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    @Override
+    public String toString(){
+        return "child id: " + this.getId();
+    }
+
 }

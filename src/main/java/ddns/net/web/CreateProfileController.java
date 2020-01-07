@@ -40,8 +40,10 @@ public class CreateProfileController {
         message.setType("error");
 
         if(user.getConfirm_pass().equals(user.getPass()) && !bindingResult.hasErrors()){
+
             User user_to_send = new User(
                     user.getName(),user.getLast_name(),user.getEmail(),user.getPass());
+
             userService.save(user_to_send);
 
             Cookie cookie = new Cookie("id",Integer.toString(user_to_send.getId()));

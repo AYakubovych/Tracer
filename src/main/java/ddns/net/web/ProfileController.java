@@ -33,7 +33,7 @@ public class ProfileController {
             if(cookie.getName().equals("id")){
                 user = userService.findOneById(Integer.parseInt(cookie.getValue()));
                 model.addAttribute("user",user);
-                
+
                 return new ModelAndView("profile");
             }
         }
