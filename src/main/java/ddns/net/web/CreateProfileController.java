@@ -4,6 +4,8 @@ import ddns.net.entities.User;
 import ddns.net.entities.UserWithConfirmPass;
 import ddns.net.service.UserService;
 import ddns.net.utility.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import java.util.Locale;
 @RequestMapping("/create")
 @Controller
 public class CreateProfileController {
+
+    private Logger logger = LoggerFactory.getLogger(CreateProfileController.class);
 
     private UserService userService;
 

@@ -20,6 +20,7 @@ import java.util.List;
 public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
+
     private UserService userService;
     private MessageSource messageSource;
 

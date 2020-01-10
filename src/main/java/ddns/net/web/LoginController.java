@@ -4,6 +4,8 @@ package ddns.net.web;
 import ddns.net.entities.User;
 import ddns.net.service.UserService;
 import ddns.net.utility.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ import java.util.Locale;
 @RequestMapping("/login")
 @Controller
 public class LoginController {
+
+    private Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     private MessageSource messageSource;
 
