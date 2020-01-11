@@ -44,13 +44,16 @@
 
 
         <!-- tracking service -->
-
+            <select onselect = "">
             <c:forEach items="${locationMap.keySet()}" var="date">
-                <c:out value="${date}"/><br>
-                <c:forEach items="${locationMap.get(date)}" var="time">
-                    <c:out value="${time}"/><br>
-                </c:forEach>
+                <optgroup label="${date}">
+                    <c:forEach items="${locationMap.get(date)}" var="time">
+                        <option>${time}</option>
+                    </c:forEach>
+                </optgroup>
             </c:forEach>
+            </select>
+
 
 
         </div>
@@ -86,4 +89,20 @@
         window.open("/map","_self");
     }
 </script>
+<!--
+<script>
+    var dd2options = ${dd2optionsAsJSObject};
+    var dd3options = ${dd3optionsAsJSObject};
+    function dd1change(dd1) {
+        // Fill dd2 options based on selected dd1 value.
+        var selected = dd1.options[dd1.selectedIndex].value;
+    ...
+    }
+    function dd2change(dd2) {
+        // Fill dd3 options based on selected dd2 value.
+        var selected = dd2.options[dd2.selectedIndex].value;
+    ...
+    }
+</script>
 
+-->
