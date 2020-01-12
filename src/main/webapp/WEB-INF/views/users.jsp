@@ -11,15 +11,16 @@
 <head>
     <title>Main</title>
     <link rel="stylesheet" type="text/css" href="../../../styles/style.css">
+
 </head>
 <body style="background-color:#F2F2F2;">
 
 <!-- Top pannel -->
 
 <div class="top_menu_bar">
-		<span class="spam" style="float:left;margin-left: 20%">
-				<p class="top_bar_text"  onclick="openMain()">ServerSideDiplom</p>
-		</span>
+    <span class="spam" style="float:left;margin-left: 20%">
+        <p class="top_bar_text" onclick="openMain()">ServerSideDiplom</p>
+    </span>
     <span class="spam" style="float:right;margin-right: 20%">
             <c:choose>
                 <c:when test="${cookie.containsKey('id') }">
@@ -31,9 +32,11 @@
                     <p class="top_bar_text" onclick="openCreate()"> ${head_createp_rofile}</p>
                 </c:otherwise>
             </c:choose>
-        </span>
+
+    </span>
 </div>
-<div style="height:90px;"></div>
+<div style="height:48px;"></div>
+<div style="height:24px;"><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a></div>
 
 <h1>${labelUsers}</h1>
 <c:if test = "${not empty users}">

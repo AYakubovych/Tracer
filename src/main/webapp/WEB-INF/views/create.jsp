@@ -21,6 +21,7 @@
 <head>
     <title>Create account</title>
     <link rel="stylesheet" type="text/css" href="../../../styles/style.css">
+
 </head>
 <body style="background-color:#F2F2F2;">
 
@@ -43,7 +44,8 @@
 
 		</span>
     </div>
-<div style="height:90px;"></div>
+<div style="height:48px;"></div>
+<div style="height:24px;"><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a></div>
     <!-- Mid pannel -->
 <div class = "center_block">
     <div class="center_top"></div>

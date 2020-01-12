@@ -16,7 +16,7 @@
 	font-size:1.3em;
 }
 .top_bar_text{
-	margin-top: 2px;
+	margin-top: 0px;
 	text-align:center;
 	font-family:Courier New, italic;
 	font-size: 20px;
@@ -124,6 +124,24 @@ input[type=text]:hover {
 .quarter{
 	float:left;
 	width:24.99999%;
+}
+.index_block{
+	content:"";
+	clear:both;
+	padding:0 8px;
+	padding-top:16px!important;
+	padding-bottom:16px!important;
+	display:inline-block;
+	width:auto;
+	text-align:center!important;
+	font-size: 20px;
+	font-family:Courier New, italic;
+}
+h3{
+	font-size:24px;
+	font-family:"Segoe UI",Arial,sans-serif;
+	font-weight:400;
+	margin:10px 0;
 }
 
 
