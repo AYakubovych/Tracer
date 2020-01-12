@@ -57,7 +57,7 @@
                 <c:choose>
                     <c:when test="${user.child != null}">
                         <h4 class="in_box_text">${user.child.name}</h4>
-                        <button class="submit_button" onclick="">In progress</button>
+                        <button class="submit_button" onclick="openTracking()">Track</button>
                     </c:when>
                     <c:otherwise>
                         <form:form method="post" modelAttribute="child" >
@@ -102,5 +102,9 @@
     function openMap()
     {
         window.open("/map","_self");
+    }
+    function openTracking()
+    {
+        window.open("/tracking","_self");
     }
 </script>

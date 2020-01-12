@@ -16,36 +16,37 @@ public class TestDataBaseEntities {
     private static ChildService childService;
     private static LocationDataService locationDataService;
 
-    public static void run(){
-        addChilds();
+    public void run(){
+
         addUsers();
         addLocationDataS();
+        addChilds();
     }
 
-    private static void addLocationDataS(){
+    private void addLocationDataS(){
         LocationData locationData = new LocationData();
 
-        locationData.setChildId(1);
-        locationData.setLongitude(2.2);
-        locationData.setLatitude(2.2);
+        locationData.setChildId(10);
+        locationData.setLongitude(19.9789);
+        locationData.setLatitude(50.0591);
         locationData.setDate("2020-01-01");
         locationData.setTime("10:00");
 
         locationDataService.save(locationData);
         locationData = new LocationData();
 
-        locationData.setChildId(1);
-        locationData.setLongitude(2.3);
-        locationData.setLatitude(2.3);
+        locationData.setChildId(10);
+        locationData.setLongitude(19.9789);
+        locationData.setLatitude(50.0591);
         locationData.setDate("2020-01-01");
         locationData.setTime("11:00");
 
         locationDataService.save(locationData);
         locationData = new LocationData();
 
-        locationData.setChildId(1);
-        locationData.setLongitude(2.4);
-        locationData.setLatitude(2.4);
+        locationData.setChildId(10);
+        locationData.setLongitude(19.9789);
+        locationData.setLatitude(50.0591);
         locationData.setDate("2020-01-02");
         locationData.setTime("8:00");
 
@@ -53,30 +54,31 @@ public class TestDataBaseEntities {
         locationData = new LocationData();
 
         locationData.setChildId(1);
-        locationData.setLongitude(1.2);
-        locationData.setLatitude(1.2);
+        locationData.setLongitude(19.9789);
+        locationData.setLatitude(50.0591);
         locationData.setDate("2020-01-02");
         locationData.setTime("11:10");
 
         locationDataService.save(locationData);
         locationData = new LocationData();
 
-        locationData.setChildId(1);
-        locationData.setLongitude(1.1);
-        locationData.setLatitude(1.1);
+        locationData.setChildId(10);
+        locationData.setLongitude(19.9789);
+        locationData.setLatitude(50.0591);
         locationData.setDate("2020-01-03");
         locationData.setTime("10:00");
 
         locationDataService.save(locationData);
     }
 
-    private static void addUsers(){
+    private void addUsers(){
         User user = new User();
 
         user.setEmail("asd@asd.com");
         user.setName("asd");
         user.setLast_name("asd");
         user.setPass("asd");
+
 
         userService.save(user);
         user = new User();
@@ -105,7 +107,7 @@ public class TestDataBaseEntities {
         userService.save(user);
     }
 
-    private static void addChilds(){
+    private void addChilds(){
         Child child = new Child();
         child.setName("asd");
         child.setPass("asd");

@@ -43,6 +43,10 @@ public class CreateProfileController {
         Message message = new Message();
         message.setType("error");
 
+        if(userService.findOneByEmail(user.getEmail()) != null ){
+            return new ModelAndView("redirect:/login");
+        }
+
         if(user.getConfirm_pass().equals(user.getPass()) && !bindingResult.hasErrors()){
 
             User user_to_send = new User(

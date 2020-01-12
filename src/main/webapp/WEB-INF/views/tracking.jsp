@@ -44,15 +44,18 @@
 
 
         <!-- tracking service -->
-            <select onselect = "">
-            <c:forEach items="${locationMap.keySet()}" var="date">
-                <optgroup label="${date}">
-                    <c:forEach items="${locationMap.get(date)}" var="time">
-                        <option>${time}</option>
-                    </c:forEach>
-                </optgroup>
-            </c:forEach>
-            </select>
+
+
+                <c:forEach items="${locationMap.keySet()}" var="date">
+                    <h4>${date}</h4>
+                        <c:forEach items="${locationMap.get(date)}" var="time">
+                            <a target="_blank"
+                               href="https://www.google.com/maps/place/${time.getLatitude()}N+${time.getLongitude()}E">
+                               ${time.getTime()}
+                            </a><br>
+                        </c:forEach>
+                </c:forEach>
+
 
 
 

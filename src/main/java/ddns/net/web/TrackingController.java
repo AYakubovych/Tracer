@@ -48,8 +48,8 @@ public class TrackingController {
         User user = userService.findOneById(userId);
         List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
 
-        Map< String,List<String> > locationMap = new HashMap<>();
-        List<String> timeList = new ArrayList<>();
+        Map<String,List<LocationData> > locationMap = new HashMap<>();
+        List<LocationData> timeList = new ArrayList<>();
         String date = "";
 
         for (LocationData location: locationDataList
@@ -60,7 +60,7 @@ public class TrackingController {
                 timeList = new ArrayList<>();
             }
 
-            timeList.add(location.getTime());
+            timeList.add(location);
             locationMap.put(date,timeList);
         }
 
