@@ -121,6 +121,11 @@ input[type=text]:hover {
 	font-size: 24px;
 	color: #A80038
 }
+.quarter{
+	float:left;
+	width:24.99999%;
+}
+
 
 
 

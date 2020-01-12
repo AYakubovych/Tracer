@@ -7,10 +7,22 @@
 <spring:message key="head.profile" var="head_profile"/>
 <spring:message key="head.log_out" var="head_log_out"/>
 <spring:message key="head.log_in" var="head_log_in"/>
+
+<spring:message key="here" var="here"/>
+<spring:message key="index.github" var="github"/>
+<spring:message key="index.java" var="java"/>
+<spring:message key="index.android" var="android"/>
+<spring:message key="index.ubuntu" var="ubuntu"/>
+<spring:message key="index.spring" var="spring"/>
+<spring:message key="index.hibernate" var="hibernate"/>
+<spring:message key="index.postgres" var="postgre"/>
+<spring:message key="index.tomcat" var="tomcat"/>
+
 <html>
 <head>
     <title>Main</title>
     <link rel="stylesheet" type="text/css" href="../../../styles/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body style="background-color:#F2F2F2;">
 
@@ -34,6 +46,54 @@
         </span>
     </div>
 <div style="height:90px;"></div>
+
+<!-- First Grid-->
+<div class="w3-row-padding w3-padding-16 w3-center" style="min-width: 1024px">
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/github.png" alt="GitHub" width="250" height="250">
+        <h3>GitHub</h3>
+        <p>${github} <a href="https://github.com/AYakubovych/Tracer" target="_blank">${here}</a>.</p>
+    </div>
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/javaee.png" alt="Java" width="250" height="250">
+        <h3>Java</h3>
+        <p>${java}</p>
+    </div>
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/android.png" alt="Android" width="250" height="250">
+        <h3>Android</h3>
+        <p>${android} <a href="https://github.com/AYakubovych/AndroidAppDiplom" target="_blank">${here}</a>.
+            <!-- You can download it here.--></p>
+    </div>
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/ubuntu.png" alt="Ubuntu" width="250" height="250">
+        <h3>Ubuntu Server</h3>
+        <p>${ubuntu}</p>
+    </div>
+</div>
+<!-- Second Grid-->
+<div class="w3-row-padding w3-padding-16 w3-center" style="min-width: 1024px">
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/spring.png" alt="Spring" width="250" height="250">
+        <h3>Spring</h3>
+        <p>${spring}</p>
+    </div>
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/hibernate.png" alt="Hibernate" width="250" height="250">
+        <h3>Hibernate</h3>
+        <p>${hibernate}</p>
+    </div>
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/postgres.jpg" alt="PostgreSQL" width="250" height="250">
+        <h3>PostgreSQL</h3>
+        <p>${postgre}</p>
+    </div>
+    <div class="quarter">
+        <img src="${pageContext.request.contextPath}/img/tomcat.jpg" alt="Tomcat" width="250" height="250">
+        <h3>Tomcat</h3>
+        <p>${tomcat}</p>
+    </div>
+</div>
 
 </body>
 </html>

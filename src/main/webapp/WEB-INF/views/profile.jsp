@@ -10,6 +10,7 @@
 <spring:message key="name" var="name"/>
 <spring:message key="last.name" var="surname"/>
 <spring:message key="mail" var="mail"/>
+<spring:message key="tracking" var="tracking"/>
 
 <spring:message key="child.mail" var="child_mail"/>
 <spring:message key="child.pass" var="child_pass"/>
@@ -56,7 +57,7 @@
 
                 <c:choose>
                     <c:when test="${user.child != null}">
-                        <h4 class="in_box_text">${user.child.name}</h4>
+                        <h4 class="in_box_text">${tracking}: ${user.child.name}</h4>
                         <button class="submit_button" onclick="openTracking()">Track</button>
                     </c:when>
                     <c:otherwise>
