@@ -5,3 +5,9 @@ This service receives localization data from the Android application,
 adds it to the database and allows the associated account to measure it.
 From time to time I'm updating the web page with the service (ayakubovych.ddns.net).
 Still in progres..
+
+
+
+Test user:
+asd@asd.com
+pass: asd
