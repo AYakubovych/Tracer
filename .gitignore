@@ -9,3 +9,4 @@ out
 gen
 target
 src/main/resources/properties/db.properties
+src/main/resources/properties/map.properties

@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Tracking</title>
-    <link rel="stylesheet" type="text/css" href="../../../styles/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/map.css">
 
 </head>
 <body style="background-color:#F2F2F2;">
@@ -39,8 +39,8 @@
 <div style="height:24px;"><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a></div>
 
 <!-- Mid pannel -->
-<div class = "center_block">
-    <div class="center_top"></div>
+<div class = "center_map_block">
+    <div class="center_map_block_top"></div>
     <div class = "center_border">
         <div class="text_box">
 
@@ -50,24 +50,27 @@
 
                 <c:forEach items="${locationMap.keySet()}" var="date">
                     <h4>${date}</h4>
-                        <c:forEach items="${locationMap.get(date)}" var="time">
+                        <c:forEach items="${locationMap.get(date)}" var="xx">
                             <a target="_blank"
-                               href="https://www.google.com/maps/place/${time.getLatitude()}N+${time.getLongitude()}E">
-                               ${time.getTime()}
-                            </a><br>
+                               href="https://www.google.com/maps/place/${xx.getLatitude()}N+${xx.getLongitude()}E">
+                               ${xx.getTime()}
+                            </a>
+                            <button onclick="newMarker(${xx.getLatitude()},${xx.getLongitude()})">Test</button>
+                            <br>
                         </c:forEach>
                 </c:forEach>
 
 
-
-
         </div>
+        <div class="map" id="map" ></div>
     </div>
 </div>
+
 </div>
 </body>
 </html>
 
+<!--Redirect scripts-->
 <script language="javascript" type="text/javascript">
     function openProfile()
     {
@@ -94,6 +97,28 @@
         window.open("/map","_self");
     }
 </script>
+
+<!--Map scripts -->
+<script>
+    var map;
+    var marker;
+    var uluru;
+    function initMap() {
+        uluru = {lat: 52.425962, lng: 18.670546};
+        map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 4, center: uluru});
+
+    }
+    function newMarker(latt,longg) {
+        uluru = {lat: latt, lng: longg};
+        map = new google.maps.Map(document.getElementById("map"),{zoom: 12, center: uluru});
+        marker = new google.maps.Marker({position: uluru, map: map});
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap">
+</script>
+
 <!--
 <script>
     var dd2options = ${dd2optionsAsJSObject};
