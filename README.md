@@ -7,6 +7,8 @@ From time to time I'm updating the web page with the service (ayakubovych.ddns.n
 Still in progres..
 
 
+P.S. There are no database properties and map api key files.
+
 
 Test user:
 asd@asd.com
