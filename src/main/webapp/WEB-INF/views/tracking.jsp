@@ -47,25 +47,33 @@
 
         <!-- tracking service -->
 
-
+<!--
                 <c:forEach items="${locationMap.keySet()}" var="date">
                     <h4>${date}</h4>
-                        <c:forEach items="${locationMap.get(date)}" var="xx">
+                        <c:forEach items="${locationMap.get(date)}" var="time_entity">
                             <a target="_blank"
-                               href="https://www.google.com/maps/place/${xx.getLatitude()}N+${xx.getLongitude()}E">
-                               ${xx.getTime()}
+                               href="https://www.google.com/maps/place/${time_entity.getLatitude()}N+${time_entity.getLongitude()}E">
+                               ${time_entity.getTime()}
                             </a>
-                            <button onclick="newMarker(${xx.getLatitude()},${xx.getLongitude()})">Test</button>
+                            <button onclick="newMarker(${time_entity.getLatitude()},${time_entity.getLongitude()})">Test</button>
                             <br>
                         </c:forEach>
                 </c:forEach>
+-->
+            <select id = "select">
+                <c:forEach items="${locationMap.keySet()}" var = "date">
+                    <optgroup label="${date}">${date}</optgroup>
+                    <c:forEach items="${locationMap.get(date)}" var = "time_entity">
+                        <option value="${time_entity.getLatitude()} ${time_entity.getLongitude()}">${time_entity.getTime()}</option>
+                    </c:forEach>
+                </c:forEach>
 
-
+            </select>
+            <button onclick="markerSet()">Track</button>
         </div>
         <div class="map" id="map" ></div>
     </div>
 </div>
-
 </div>
 </body>
 </html>
@@ -102,17 +110,20 @@
 <script>
     var map;
     var marker;
-    var uluru;
+    var loc;
+    var selectValue;
+    var res;
     function initMap() {
-        uluru = {lat: 52.425962, lng: 18.670546};
+        loc = {lat: 52.425962, lng: 18.670546};
         map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 4, center: uluru});
-
+            document.getElementById('map'), {zoom: 4, center: loc});
     }
-    function newMarker(latt,longg) {
-        uluru = {lat: latt, lng: longg};
-        map = new google.maps.Map(document.getElementById("map"),{zoom: 12, center: uluru});
-        marker = new google.maps.Marker({position: uluru, map: map});
+    function markerSet() {
+        selectValue = document.getElementById("select").value;
+        res = selectValue.split(" ");
+        loc = {lat: parseFloat(res[0]), lng: parseFloat(res[1])};
+        map = new google.maps.Map(document.getElementById("map"),{zoom: 12, center: loc});
+        marker = new google.maps.Marker({position: loc, map: map});
     }
 </script>
 <script async defer
@@ -120,6 +131,14 @@
 </script>
 
 <!--
+<script>
+//Default new marker func
+function newMarker(latt,longg) {
+loc = {lat: latt, lng: longg};
+map = new google.maps.Map(document.getElementById("map"),{zoom: 12, center: loc});
+marker = new google.maps.Marker({position: loc, map: map});
+}
+</script>
 <script>
     var dd2options = ${dd2optionsAsJSObject};
     var dd3options = ${dd3optionsAsJSObject};
