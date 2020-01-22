@@ -16,35 +16,39 @@
 <spring:message key="child.pass" var="child_pass"/>
 <spring:message key="submit" var="submit"/>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Profile</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/style.css">
-
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Tracer</title>
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/styles/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<body style="background-color:#F2F2F2;">
+<body>
 
-<!-- Top pannel -->
-<div class="top_menu_bar">
-    <span class="spam" style="float:left;margin-left: 20%">
-        <p class="top_bar_text" onclick="openMain()">ServerSideDiplom</p>
-    </span>
-    <span class="spam" style="float:right;margin-right: 20%">
-            <c:choose>
-                <c:when test="${cookie.containsKey('id') }">
-                    <p class="top_bar_text" onclick="openProfile()">${head_profile} </p>
-                    <p class="top_bar_text" onclick="openLogOut()" > ${head_log_out}</p>
-                </c:when>
-                <c:otherwise>
-                    <p class="top_bar_text" onclick="openLogIn()" >${head_log_in} </p>
-                    <p class="top_bar_text" onclick="openCreate()"> ${head_createp_rofile}</p>
-                </c:otherwise>
-            </c:choose>
 
-    </span>
-</div>
-<div style="height:48px;"></div>
-<div style="height:24px;"><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a></div>
+<div id="wrapper">
+    <!-- Menu pannel -->
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
+                <li class="current_page_item" style="float: left"><a href="/">Home</a></li>
+                <c:choose>
+                    <c:when test="${cookie.containsKey('id') }">
+                        <li style="float: right"><a href="/profile">Profile</a></li>
+                        <li style="float: right"><a href="/logout">Log Out</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li style="float: right"><a href="/create">Create Profile</a></li>
+                        <li style="float: right"><a href="/login">Log In</a></li>
+                    </c:otherwise>
+                </c:choose>
+
+            </ul>
+        </div>
+    </div>
+    <div><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a></div>
 
     <!-- Mid pannel -->
 <div class = "center_block">

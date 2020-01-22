@@ -24,7 +24,7 @@ public class WebConfig implements WebMvcConfigurer {
     InternalResourceViewResolver viewResolver(){
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 
-        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setPrefix("/views/");
         resolver.setSuffix(".jsp");
         resolver.setRequestContextAttribute("requestContext");
         return  resolver;
@@ -40,8 +40,8 @@ public class WebConfig implements WebMvcConfigurer {
         ReloadableResourceBundleMessageSource messageSource =
                 new ReloadableResourceBundleMessageSource();
         messageSource.setBasenames(
-                "WEB-INF/i18n/messages",
-                "/WEB-INF/i18n/application"
+                "i18n/messages",
+                "/i18n/application"
         );
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setFallbackToSystemLocale(false);

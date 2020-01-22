@@ -36,8 +36,8 @@ public class TestDataBaseEntities {
         locationData = new LocationData();
 
         locationData.setChildId(10);
-        locationData.setLongitude(19.9789);
-        locationData.setLatitude(50.0591);
+        locationData.setLongitude(19.9349);
+        locationData.setLatitude(50.0536);
         locationData.setDate("2020-01-01");
         locationData.setTime("11:00");
 
@@ -45,8 +45,8 @@ public class TestDataBaseEntities {
         locationData = new LocationData();
 
         locationData.setChildId(10);
-        locationData.setLongitude(19.9789);
-        locationData.setLatitude(50.0591);
+        locationData.setLongitude(19.9508);
+        locationData.setLatitude(50.0277);
         locationData.setDate("2020-01-02");
         locationData.setTime("8:00");
 
