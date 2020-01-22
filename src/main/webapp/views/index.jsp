@@ -120,7 +120,7 @@
                 <div class="content">
                     <div class="image"><img src="images/tomcat.jpg" width="250" height="250" alt="" /></div>
                     <h2>Tomcat</h2>
-                    <p>{tomcat}</p>
+                    <p>${tomcat}</p>
                 </div>
             </div>
         </div>
@@ -136,10 +136,11 @@
         <div class="tbox3">
             <div class="box-style box-style03">
                 <div class="content">
-                    <div class="image"><img  src="images/github.png" width="250" height="250" alt="" /></div>
-                    <h2>Nulla luctus eleifend </h2>
-                    <p>Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh.</p>
-                    <a href="#" class="button">Learn More</a>
+                    <h2>Test user is:</h2>
+                    <p>asd@asd.com</p>
+                    <h2>Password:</h2>
+                    <p>asd</p>
+
                 </div>
             </div>
         </div>

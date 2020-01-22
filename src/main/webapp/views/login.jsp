@@ -79,25 +79,3 @@
 </body>
 </html>
 
-<script language="javascript" type="text/javascript">
-    function openProfile()
-    {
-        window.open("/profile","_self");
-    }
-    function openMain()
-    {
-        window.open("/","_self");
-    }
-    function openLogIn()
-    {
-        window.open("/login","_self");
-    }
-    function openLogOut()
-    {
-        window.open("/logout","_self");
-    }
-    function openCreate()
-    {
-        window.open("/create","_self");
-    }
-</script>

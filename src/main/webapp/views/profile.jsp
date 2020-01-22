@@ -64,7 +64,9 @@
                 <c:choose>
                     <c:when test="${user.child != null}">
                         <h4 class="in_box_text">${tracking}: ${user.child.name}</h4>
-                        <button class="submit_button" onclick="openTracking()">Track</button>
+                        <form action="/tracking">
+                        <button class="submit_button" type="submit">Map</button>
+                        </form>
                     </c:when>
                     <c:otherwise>
                         <form:form method="post" modelAttribute="child" >
@@ -85,33 +87,3 @@
 </body>
 </html>
 
-<script language="javascript" type="text/javascript">
-    function openProfile()
-    {
-        window.open("/profile","_self");
-    }
-    function openMain()
-    {
-        window.open("/","_self");
-    }
-    function openLogIn()
-    {
-        window.open("/login","_self");
-    }
-    function openLogOut()
-    {
-        window.open("/logout","_self");
-    }
-    function openCreate()
-    {
-        window.open("/create","_self");
-    }
-    function openMap()
-    {
-        window.open("/map","_self");
-    }
-    function openTracking()
-    {
-        window.open("/tracking","_self");
-    }
-</script>

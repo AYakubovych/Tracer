@@ -65,26 +65,3 @@
 
 </body>
 </html>
-
-<script language="javascript" type="text/javascript">
-    function openProfile()
-    {
-        window.open("profile.jsp","_self");
-    }
-    function openMain()
-    {
-        window.open("/","_self");
-    }
-    function openLogIn()
-    {
-        window.open("login.jsp","_self");
-    }
-    function openLogOut()
-    {
-        window.open("log_out","_self");
-    }
-    function openCreate()
-    {
-        window.open("/create","_self")
-    }
-</script>
