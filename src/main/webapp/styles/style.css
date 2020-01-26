@@ -204,6 +204,7 @@ a:hover {
 
 #menu li {
 	display: inline-block;
+
 }
 
 #menu a {
@@ -215,10 +216,11 @@ a:hover {
 	text-transform: lowercase;
 	text-align: center;
 	text-transform: uppercase;
-	font-family: 'Oswald', sans-serif;
-	font-size: 14px;
+	font-family:Courier New, italic;
+	font-size: 20px;
 	font-weight: 300;
 	color: #FFFFFF;
+
 }
 
 #menu a:hover, #menu .current_page_item a {
@@ -490,7 +492,7 @@ a:hover {
 #three-column .tbox1 {
 	float: left;
 	width: 384px;
-	margin-right: 20px;
+	margin-right: 25px;
 
 }
 
@@ -549,12 +551,6 @@ a:hover {
 	padding: 30px;
 }
 
-
-.divider {
-	overflow: hidden;
-	height: 50px;
-	background: url(images/img04.png) no-repeat center top;
-}
 
 .button
 {
