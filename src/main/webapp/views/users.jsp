@@ -28,12 +28,12 @@
                 <li class="current_page_item" style="float: left"><a href="/">Home</a></li>
                 <c:choose>
                     <c:when test="${cookie.containsKey('id') }">
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">Log Out</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">Create Profile</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">Log In</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
                     </c:otherwise>
                 </c:choose>
 

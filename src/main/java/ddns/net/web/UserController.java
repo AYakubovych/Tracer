@@ -28,7 +28,7 @@ public class UserController {
     public ModelAndView list(Model model){
         List<User> users = userService.findAll();
         model.addAttribute("users",users);
-        return new ModelAndView("users","users",users);
+        return new ModelAndView("users");
 
     }
 

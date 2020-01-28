@@ -506,7 +506,11 @@ a:hover {
 	width: 384px;
 }
 #three-column .doubletbox {
-	float: right;
+	 float: right;
+	 width: 748px;
+ }
+#three-column .doubletbox_left {
+	float: left;
 	width: 748px;
 }
 
@@ -601,7 +605,7 @@ a:hover {
 
 }
 .submit_button{
-	width: 50%;
+	width: 55%;
 	background-color: #204969;
 	color: white;
 	padding: 14px 20px;

@@ -7,6 +7,29 @@
 <spring:message key="head.log_out" var="head_log_out"/>
 <spring:message key="head.log_in" var="head_log_in"/>
 
+<!--Map scripts -->
+<script>
+    var map;
+    var marker;
+    var loc;
+    var selectValue;
+    var res;
+    function initMap() {
+        loc = {lat: 52.425962, lng: 18.670546};
+        map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 4, center: loc});
+    }
+    function markerSet() {
+        selectValue = document.getElementById("select").value;
+        res = selectValue.split(" ");
+        loc = {lat: parseFloat(res[0]), lng: parseFloat(res[1])};
+        map = new google.maps.Map(document.getElementById("map"),{zoom: 12, center: loc});
+        marker = new google.maps.Marker({position: loc, map: map});
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap">
+</script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,12 +52,12 @@
                 <li class="current_page_item" style="float: left"><a href="/">Home</a></li>
                 <c:choose>
                     <c:when test="${cookie.containsKey('id') }">
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">Log Out</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">Create Profile</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">Log In</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
+                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
                     </c:otherwise>
                 </c:choose>
 
@@ -76,29 +99,8 @@
 </body>
 </html>
 
-<!--Map scripts -->
-<script>
-    var map;
-    var marker;
-    var loc;
-    var selectValue;
-    var res;
-    function initMap() {
-        loc = {lat: 52.425962, lng: 18.670546};
-        map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 4, center: loc});
-    }
-    function markerSet() {
-        selectValue = document.getElementById("select").value;
-        res = selectValue.split(" ");
-        loc = {lat: parseFloat(res[0]), lng: parseFloat(res[1])};
-        map = new google.maps.Map(document.getElementById("map"),{zoom: 12, center: loc});
-        marker = new google.maps.Marker({position: loc, map: map});
-    }
-</script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap">
-</script>
+
+
 
 <!--
 <script>

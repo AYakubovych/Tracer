@@ -35,7 +35,6 @@ public class TrackingController {
     private String API_KEY;
     private Logger logger = LoggerFactory.getLogger(TrackingController.class);
 
-
     private LocationDataService locationDataService;
     private UserService userService;
 
