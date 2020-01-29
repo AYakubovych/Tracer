@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ import java.util.Date;
  *  try to RESTController in login and registration
  */
 
-@Controller
+@RestController
 @RequestMapping("/android")
 public class AndroidController {
 
@@ -36,30 +37,29 @@ public class AndroidController {
     private LocationDataService locationDataService;
 
     @RequestMapping("/registration")
-    public String createChildProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public long createChildProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Child child = new Child(
                 request.getParameter("username"),request.getParameter("pass")
         );
 
         childService.save(child);
-        response.getWriter().println(child.getId());
+        //response.getWriter().println(child.getId());
 
-        return null;
+        return child.getId();
     }
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public long login(HttpServletRequest request){
         Child child = childService.findOneByName(request.getParameter("username"));
         if(child.getPass().equals(request.getParameter("pass"))){
-            response.getWriter().println(child.getId());
+            return child.getId();
         }
-        response.getWriter().println("null");
-        return null;
+        return 0;
     }
 
     @RequestMapping("/tracking/{id}")
-    public String addLocation(@PathVariable String id, HttpServletRequest request){
+    public void addLocation(@PathVariable String id, HttpServletRequest request){
 
         Date date = new Date();
         String d = FULL_DATE_FORMAT.format(date);
@@ -75,8 +75,6 @@ public class AndroidController {
         locationData.setTime(dateArray[1]);
 
         locationDataService.save(locationData);
-
-        return null;
     }
 
     @Autowired
