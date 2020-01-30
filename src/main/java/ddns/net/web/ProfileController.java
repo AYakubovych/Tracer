@@ -4,12 +4,15 @@ import ddns.net.entities.Child;
 import ddns.net.entities.User;
 import ddns.net.service.ChildService;
 import ddns.net.service.UserService;
+import ddns.net.utility.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 
 @RequestMapping("/profile")
 @Controller
@@ -28,41 +32,51 @@ public class ProfileController {
 
     private ChildService childService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView profile(HttpServletRequest request, Model model){
-        Cookie[] cookies = request.getCookies();
-        User user;
-        for (Cookie cookie: cookies
-             ) {
-            if(cookie.getName().equals("id")){
-                user = userService.findOneById(Integer.parseInt(cookie.getValue()));
-                model.addAttribute("user",user);
+    private MessageSource messageSource;
 
-                return new ModelAndView("profile");
-            }
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView profile(@CookieValue("id") int id,
+                                Model model){
+
+        if(id > 0){
+            User user = userService.findOneById(id);
+            model.addAttribute("user",user);
+
+            return new ModelAndView("profile");
         }
+
         return new ModelAndView("redirect:/create");
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addChild(@ModelAttribute Child child, BindingResult bindingResult,HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        User user;
-        for (Cookie cookie: cookies
-        ) {
-            if(cookie.getName().equals("id")){
-                user = userService.findOneById(Integer.parseInt(cookie.getValue()));
+    public ModelAndView addChild(@ModelAttribute Child childModel,
+                                 @CookieValue("id") int id,
+                                 Locale locale,Model model){
+        Message errorMessage = null;
+        User user =null;
+            if(id > 0){
 
-                Child child_check = childService.findOneByName(child.getName());
-                if(child_check.getPass().equals(child.getPass())){
-                    user.setChild(child_check);
-                    userService.save(user);
 
-                    return new ModelAndView("redirect:/profile");
+                user = userService.findOneById(id);
+                Child childData = childService.findOneByName(childModel.getName());
+
+                if(childData != null){
+                    if(childData.getPass().equals(childModel.getPass())){
+
+                        user.setChild(childData);
+                        userService.save(user);
+                        return new ModelAndView("redirect:/profile");
+                    }
                 }
             }
-        }
-        return new ModelAndView("redirect:/index");
+        errorMessage = new Message();
+        errorMessage.setMessage(messageSource.getMessage(
+                "no.such.child",new Object[]{},locale));
+        errorMessage.setType("error");
+
+        model.addAttribute("user",user);
+        model.addAttribute("message", errorMessage);
+        return new ModelAndView("profile");
     }
 
     @ModelAttribute
@@ -78,5 +92,10 @@ public class ProfileController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
     }
 }

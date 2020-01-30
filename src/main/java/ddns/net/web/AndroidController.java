@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -37,29 +38,32 @@ public class AndroidController {
     private LocationDataService locationDataService;
 
     @RequestMapping("/registration")
-    public long createChildProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public long createChildProfile(@RequestParam("username")String username,
+                                   @RequestParam("pass") String pass){
 
         Child child = new Child(
-                request.getParameter("username"),request.getParameter("pass")
+                username,pass
         );
-
         childService.save(child);
-        //response.getWriter().println(child.getId());
 
         return child.getId();
     }
 
     @RequestMapping("/login")
-    public long login(HttpServletRequest request){
-        Child child = childService.findOneByName(request.getParameter("username"));
-        if(child.getPass().equals(request.getParameter("pass"))){
+    public long login(@RequestParam("username")String username,
+                      @RequestParam("pass") String pass){
+
+        Child child = childService.findOneByName(username);
+        if(child.getPass().equals(pass)){
             return child.getId();
         }
         return 0;
     }
 
     @RequestMapping("/tracking/{id}")
-    public void addLocation(@PathVariable String id, HttpServletRequest request){
+    public void addLocation(@PathVariable int id,
+                            @RequestParam("lat") double lat,
+                            @RequestParam("lon") double lon){
 
         Date date = new Date();
         String d = FULL_DATE_FORMAT.format(date);
@@ -67,9 +71,9 @@ public class AndroidController {
         String[] dateArray = d.split(" ");
 
         LocationData locationData = new LocationData();
-        locationData.setChildId(Integer.parseInt( id ));
-        locationData.setLatitude(Double.parseDouble( request.getParameter("lat")));
-        locationData.setLongitude(Double.parseDouble( request.getParameter("lon")));
+        locationData.setChildId(id);
+        locationData.setLatitude(lat);
+        locationData.setLongitude(lon);
 
         locationData.setDate(dateArray[0]);
         locationData.setTime(dateArray[1]);

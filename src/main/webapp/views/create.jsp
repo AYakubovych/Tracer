@@ -54,8 +54,8 @@
 <div class = "center_block">
     <div class="center_top"></div>
     <div class = "center_border">
+<c:choose>
 
-                <c:choose>
                     <c:when test="${not empty error_message}">
                     <h4 class="${error_message.type}">${error_message.message}</h4>
                     </c:when>

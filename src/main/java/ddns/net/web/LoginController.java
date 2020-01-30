@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -35,11 +36,14 @@ public class LoginController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView login(HttpServletResponse response, HttpServletRequest request, Locale locale, Model model){
+    public ModelAndView login(HttpServletResponse response,
+                              @RequestParam("email") String email,
+                              @RequestParam("pass") String pass,
+                              Locale locale, Model model){
 
-        User user = userService.findOneByEmail(request.getParameter("email"));
+        User user = userService.findOneByEmail(email);
 
-        if(user == null || !user.getPass().equals(request.getParameter("pass"))){
+        if(user == null || !user.getPass().equals(pass)){
             Message message = new Message();
             message.setType("error");
 

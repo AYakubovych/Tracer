@@ -25,6 +25,6 @@ public class MainPageController {
 
         model.addAttribute("api_key", API_KEY);
 
-        return new ModelAndView("main_page");
+        return new ModelAndView("tracking");
     }
 }

@@ -64,12 +64,23 @@
                 <c:choose>
                     <c:when test="${user.child != null}">
                         <h4 class="in_box_text">${tracking}: ${user.child.name}</h4>
-                        <form action="/tracking">
+                        <form action="${pageContext.request.contextPath}/tracking">
                         <button class="submit_button" type="submit">Map</button>
                         </form>
                     </c:when>
                     <c:otherwise>
+
+                        <c:choose>
+                            <c:when test="${not empty message}">
+                                <h4 class="${message.type}">${message.message}</h4>
+                            </c:when>
+                            <c:otherwise>
+                                <h4 class="in_box_text">Add child</h4>
+                            </c:otherwise>
+                        </c:choose>
+
                         <form:form method="post" modelAttribute="child" >
+
                             <form:input path="name" id="email" name = "email" placeholder="${child_mail}"/>
 
                             <form:password path="pass" id="pass" name="pass" placeholder="${child_pass}"/>

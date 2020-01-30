@@ -11,13 +11,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,38 +37,33 @@ public class TrackingController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView tracking(Model model, HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        int userId = 0;
-        for (Cookie cookie: cookies
-             ) {
-            if(cookie.getName().equals("id")){
-                userId = Integer.parseInt(cookie.getValue());
-                break;
+    public ModelAndView tracking(Model model,
+                                 @CookieValue("id") int id){
+        if(id >= 0){
+            User user = userService.findOneById(id);
+            List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
+
+            Map<String,List<LocationData> > locationMap = new HashMap<>();
+            List<LocationData> timeList = new ArrayList<>();
+            String date = "";
+
+            for (LocationData location: locationDataList) {
+                date = location.getDate();
+
+                if(!locationMap.containsKey(date)){
+                    timeList = new ArrayList<>();
+                }
+                timeList.add(location);
+                locationMap.put(date,timeList);
             }
+
+            model.addAttribute("locationMap", locationMap);
+            model.addAttribute("api_key", API_KEY);
+
+            return new ModelAndView("tracking");
         }
 
-        User user = userService.findOneById(userId);
-        List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
-
-        Map<String,List<LocationData> > locationMap = new HashMap<>();
-        List<LocationData> timeList = new ArrayList<>();
-        String date = "";
-
-        for (LocationData location: locationDataList) {
-            date = location.getDate();
-
-            if(!locationMap.containsKey(date)){
-                timeList = new ArrayList<>();
-            }
-            timeList.add(location);
-            locationMap.put(date,timeList);
-        }
-
-        model.addAttribute("locationMap", locationMap);
-        model.addAttribute("api_key", API_KEY);
-
-        return new ModelAndView("tracking");
+        return new ModelAndView("login");
     }
 
     @Autowired
