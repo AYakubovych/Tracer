@@ -26,13 +26,9 @@ public class LogoutController {
 
 
     private void deleteIdCookies(Cookie[] cookies,HttpServletResponse response){
-        for (Cookie cookie : cookies
-            ) {
-            if(cookie.getName().equals("id")){
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            }
-
+        for (Cookie cookie : cookies) {
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
         }
     }
 

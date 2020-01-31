@@ -15,7 +15,7 @@
 <spring:message key="head.profile" var="head_profile"/>
 <spring:message key="head.log_out" var="head_log_out"/>
 <spring:message key="head.log_in" var="head_log_in"/>
-
+<spring:message key="head.main" var="head_main"/>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,7 +34,7 @@
     <div id="menu-wrapper">
         <div id="menu" class="container">
             <ul>
-                <li class="current_page_item" style="float: left"><a href="/">Home</a></li>
+                <li class="current_page_item" style="float: left"><a href="/">${head_main}</a></li>
                 <c:choose>
                     <c:when test="${cookie.containsKey('id') }">
                         <li style="float: right"><a href="${pageContext.request.contextPath}/profile">Profile</a></li>

@@ -4,6 +4,7 @@ import ddns.net.entities.LocationData;
 import ddns.net.entities.User;
 import ddns.net.service.LocationDataService;
 import ddns.net.service.UserService;
+import ddns.net.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,8 +40,11 @@ public class TrackingController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView tracking(Model model,
-                                 @CookieValue("id") int id){
-        if(id >= 0){
+                                 RedirectAttributes redirectAttributes,
+                                 @CookieValue(value = "id", defaultValue = "0") int id){
+
+
+        if(id != 0){
             User user = userService.findOneById(id);
             List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
 
@@ -62,8 +67,12 @@ public class TrackingController {
 
             return new ModelAndView("tracking");
         }
+        Message message = new Message();
+        message.setMessage("Cookie expire");
+        message.setType("error");
 
-        return new ModelAndView("login");
+        redirectAttributes.addFlashAttribute("error_message", message);
+        return new ModelAndView("redirect:/login");
     }
 
     @Autowired

@@ -3,7 +3,7 @@ package ddns.net.web;
 import ddns.net.entities.User;
 import ddns.net.entities.UserWithConfirmPass;
 import ddns.net.service.UserService;
-import ddns.net.utility.Message;
+import ddns.net.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,6 @@ public class CreateProfileController {
     private Logger logger = LoggerFactory.getLogger(CreateProfileController.class);
 
     private UserService userService;
-
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -38,8 +37,11 @@ public class CreateProfileController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute @Valid UserWithConfirmPass user, BindingResult bindingResult,
-                             Model model, Locale locale, HttpServletResponse response){
+    public ModelAndView save(@ModelAttribute @Valid UserWithConfirmPass user,
+                             BindingResult bindingResult,
+                             Model model, Locale locale,
+                             HttpServletResponse response){
+
         Message message = new Message();
         message.setType("error");
 
@@ -50,11 +52,14 @@ public class CreateProfileController {
         if(user.getConfirm_pass().equals(user.getPass()) && !bindingResult.hasErrors()){
 
             User user_to_send = new User(
-                    user.getName(),user.getLast_name(),user.getEmail(),user.getPass());
+                    user.getName(),
+                    user.getLast_name(),
+                    user.getEmail(),
+                    user.getPass());
 
             userService.save(user_to_send);
 
-            Cookie cookie = new Cookie("id",Integer.toString(user_to_send.getId()));
+            Cookie cookie = new Cookie("id",String.valueOf(user_to_send.getId()));
             cookie.setMaxAge(3600);
 
             response.addCookie(cookie);
@@ -62,14 +67,19 @@ public class CreateProfileController {
             return new ModelAndView("redirect:/profile");
 
         }else if(!user.getConfirm_pass().equals(user.getPass())){
+
             message.setMessage(messageSource.getMessage(
                     "create.form.wrong.confirm.pass",new Object[]{},locale));
+
         }else{
+
             String str = messageSource.getMessage(bindingResult.getAllErrors().get(0),locale);
             message.setMessage(messageSource.getMessage(
                     str, new Object[]{}, locale));
         }
+
         model.addAttribute("error_message", message);
+
         return new ModelAndView("create");
     }
 

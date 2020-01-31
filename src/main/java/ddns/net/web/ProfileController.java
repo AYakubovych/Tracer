@@ -4,22 +4,19 @@ import ddns.net.entities.Child;
 import ddns.net.entities.User;
 import ddns.net.service.ChildService;
 import ddns.net.service.UserService;
-import ddns.net.utility.Message;
+import ddns.net.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @RequestMapping("/profile")
@@ -45,17 +42,17 @@ public class ProfileController {
             return new ModelAndView("profile");
         }
 
-        return new ModelAndView("redirect:/create");
+        return new ModelAndView("redirect:/login");
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addChild(@ModelAttribute Child childModel,
                                  @CookieValue("id") int id,
                                  Locale locale,Model model){
-        Message errorMessage = null;
-        User user =null;
-            if(id > 0){
 
+        Message errorMessage = null;
+        User user = null;
+            if(id > 0){
 
                 user = userService.findOneById(id);
                 Child childData = childService.findOneByName(childModel.getName());

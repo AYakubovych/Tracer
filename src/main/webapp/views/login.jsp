@@ -11,6 +11,7 @@
 <spring:message key="create.form.email" var="mail"/>
 <spring:message key="create.form.pass" var="pass"/>
 <spring:message key="submit" var="submit"/>
+<spring:message key="head.main" var="head_main"/>
 
 
 
@@ -31,7 +32,7 @@
     <div id="menu-wrapper">
         <div id="menu" class="container">
             <ul>
-                <li class="current_page_item" style="float: left"><a href="/">Home</a></li>
+                <li class="current_page_item" style="float: left"><a href="/">${head_main}</a></li>
                 <c:choose>
                     <c:when test="${cookie.containsKey('id') }">
                         <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>

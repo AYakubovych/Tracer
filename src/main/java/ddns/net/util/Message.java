@@ -1,4 +1,4 @@
-package ddns.net.utility;
+package ddns.net.util;
 
 public class Message {
     private String type;

@@ -3,7 +3,7 @@ package ddns.net.web;
 
 import ddns.net.entities.User;
 import ddns.net.service.UserService;
-import ddns.net.utility.Message;
+import ddns.net.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,17 @@ public class LoginController {
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     private MessageSource messageSource;
-
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView open(){
+    public ModelAndView open(HttpServletResponse response,Locale locale,Model model,
+                            @RequestParam(value = "email",defaultValue = "null") String email,
+                             @RequestParam("pass") String pass) throws InterruptedException{
+        if(!email.equals("null")){
+            login(response,email,pass,locale,model);
+
+            return new ModelAndView("redirect:/");
+        }
         return new ModelAndView("login");
     }
 
@@ -49,13 +55,14 @@ public class LoginController {
 
             message.setMessage(messageSource.getMessage(
                     "login.error",new Object[]{},locale));
+
             model.addAttribute("error_message", message);
 
             return new ModelAndView("login");
         }
 
-        Cookie cookie = new Cookie("id",Integer.toString(user.getId()));
-        cookie.setMaxAge(3600);
+        Cookie cookie = new Cookie("id",String.valueOf(user.getId()));
+        cookie.setMaxAge(60 * 60 * 24);
         response.addCookie(cookie);
 
         return new ModelAndView("redirect:/profile");

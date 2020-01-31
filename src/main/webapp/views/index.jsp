@@ -93,7 +93,7 @@
                     <c:choose>
                         <c:when test="${cookie.containsKey('id') }">
                             <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/profile">${profile}</a>
-                            <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/logout">${head_log_out}</a>
+                            <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/tracking">Tracking</a>
                         </c:when>
                         <c:otherwise>
                             <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a>
@@ -107,8 +107,16 @@
                 <div class="image_margin">
 
                     <img  src="${pageContext.request.contextPath}images/testuser.png" width="250" height="250" alt="" />
-                    <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/login">Test user</a>
-                    <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/about">About</a>
+                    <c:choose>
+                        <c:when test="${cookie.containsKey('id') }">
+                            <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/about">About</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="form_button" style="background: #A80038;"   href="${pageContext.request.contextPath}/login?email=asd@asd.com&pass=asd">Test user</a>
+                            <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/about">About</a>
+                        </c:otherwise>
+                    </c:choose>
+
 
                 </div>
             </div>

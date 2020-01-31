@@ -41,9 +41,12 @@ public class AndroidController {
     public long createChildProfile(@RequestParam("username")String username,
                                    @RequestParam("pass") String pass){
 
-        Child child = new Child(
-                username,pass
-        );
+        Child child = childService.findOneByName(username);
+
+        if(child != null){
+            return 0;
+        }
+        child = new Child(username,pass);
         childService.save(child);
 
         return child.getId();
