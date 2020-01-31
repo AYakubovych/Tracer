@@ -8,6 +8,7 @@
 <spring:message key="head.log_out" var="head_log_out"/>
 <spring:message key="head.log_in" var="head_log_in"/>
 <spring:message key="head.main" var="head_main"/>
+<spring:message key="about" var="about_project"/>
 
 <!--Map scripts -->
 <script>
@@ -35,6 +36,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/tracer.png" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -106,17 +108,13 @@
             <div class = "center_add_target">
                 <div class="image_margin">
 
-                    <img  src="${pageContext.request.contextPath}images/testuser.png" width="250" height="250" alt="" />
+                    <img  src="${pageContext.request.contextPath}images/user.png" width="250" height="250" alt="" />
                     <c:choose>
-                        <c:when test="${cookie.containsKey('id') }">
-                            <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/about">About</a>
+                        <c:when test="${!cookie.containsKey('id') }">
+                            <a class="form_button" style="background: #A80038;"   href="${pageContext.request.contextPath}/login?test=true">Test user</a>
                         </c:when>
-                        <c:otherwise>
-                            <a class="form_button" style="background: #A80038;"   href="${pageContext.request.contextPath}/login?email=asd@asd.com&pass=asd">Test user</a>
-                            <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/about">About</a>
-                        </c:otherwise>
                     </c:choose>
-
+                    <a class="form_button" style="background: #A80038;" href="${pageContext.request.contextPath}/about">${about_project}</a>
 
                 </div>
             </div>

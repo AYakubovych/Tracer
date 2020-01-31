@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestDataBaseEntities {
 
-    private static UserService userService;
-    private static ChildService childService;
-    private static LocationDataService locationDataService;
+    private UserService userService;
+    private ChildService childService;
+    private LocationDataService locationDataService;
 
     public void run(){
 
