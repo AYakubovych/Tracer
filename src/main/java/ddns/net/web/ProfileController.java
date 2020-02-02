@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Locale;
 
@@ -32,8 +33,9 @@ public class ProfileController {
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView profile(@CookieValue("id") int id,
-                                Model model){
+    public ModelAndView profile(@CookieValue(value = "id", defaultValue = "0") int id,
+                                Model model,
+                                RedirectAttributes redirectAttributes){
 
         if(id > 0){
             User user = userService.findOneById(id);
@@ -41,7 +43,11 @@ public class ProfileController {
 
             return new ModelAndView("profile");
         }
+        Message message = new Message();
+        message.setMessage("Cookie expire");
+        message.setType("error");
 
+        redirectAttributes.addFlashAttribute("error_message", message);
         return new ModelAndView("redirect:/login");
     }
 
