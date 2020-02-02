@@ -75,10 +75,9 @@ public class TestDataBaseEntities {
         User user = new User();
 
         user.setEmail("asd@asd.com");
-        user.setName("asd");
-        user.setLast_name("asd");
+        user.setName("Anton");
+        user.setLast_name("Yakubovych");
         user.setPass("asd");
-
 
         userService.save(user);
         user = new User();

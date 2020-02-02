@@ -9,6 +9,7 @@
 <spring:message key="head.log_in" var="head_log_in"/>
 <spring:message key="head.main" var="head_main"/>
 <spring:message key="about" var="about_project"/>
+<spring:message key="tracking" var="tracking"/>
 
 <!--Map scripts -->
 <script>
@@ -91,11 +92,11 @@
             <div class = "center_add_target2">
                 <div class="image_margin">
 
-                    <img  src="${pageContext.request.contextPath}images/tracer.png" width="250" height="250" alt="" />
+                    <img  src="${pageContext.request.contextPath}/images/tracer.png" width="250" height="250" alt="" />
                     <c:choose>
                         <c:when test="${cookie.containsKey('id') }">
                             <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/profile">${profile}</a>
-                            <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/tracking">Tracking</a>
+                            <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/tracking">${tracking}</a>
                         </c:when>
                         <c:otherwise>
                             <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a>
@@ -108,7 +109,7 @@
             <div class = "center_add_target">
                 <div class="image_margin">
 
-                    <img  src="${pageContext.request.contextPath}images/user.png" width="250" height="250" alt="" />
+                    <img  src="${pageContext.request.contextPath}/images/user.png" width="250" height="250" alt="" />
                     <c:choose>
                         <c:when test="${!cookie.containsKey('id') }">
                             <a class="form_button" style="background: #A80038;"   href="${pageContext.request.contextPath}/login?test=true">Test user</a>

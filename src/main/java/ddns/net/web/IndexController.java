@@ -20,7 +20,7 @@ public class IndexController {
     @Value("${api.key}")
     private String API_KEY;
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(Model model){

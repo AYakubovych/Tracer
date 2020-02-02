@@ -18,7 +18,7 @@ public class MainPageController {
     @Value("${api.key}")
     private String API_KEY;
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(MainPageController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(Model model) {

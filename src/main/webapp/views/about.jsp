@@ -58,7 +58,7 @@
         <div class="tbox1">
             <div class="box-style box-style01">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/github.png" width="250" height="250" alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/github.png" width="250" height="250" alt="" /></div>
                     <h2>GitHub</h2>
                     <p>${github}</p>
                     <a href="https://github.com/AYakubovych/Tracer" class="button">${here}</a>
@@ -68,7 +68,7 @@
         <div class="tbox2">
             <div class="box-style box-style02">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/javaee.png" width="250" height="250" alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/javaee.png" width="250" height="250" alt="" /></div>
                     <h2>Java</h2>
                     <p>${java}</p>
                 </div>
@@ -77,7 +77,7 @@
         <div class="tbox3">
             <div class="box-style box-style03">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/spring.png" width="250" height="250" alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/spring.png" width="250" height="250" alt="" /></div>
                     <h2>Spring</h2>
                     <p>${spring}</p>
                 </div>
@@ -89,7 +89,7 @@
         <div class="tbox1">
             <div class="box-style box-style01">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/hibernate.png" width="250" height="250" alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/hibernate.png" width="250" height="250" alt="" /></div>
                     <h2>Hibernate</h2>
                     <p>${hibernate}</p>
                 </div>
@@ -98,7 +98,7 @@
         <div class="tbox2">
             <div class="box-style box-style02">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/postgres.jpg" width="250" height="250" alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/postgres.jpg" width="250" height="250" alt="" /></div>
                     <h2>PostgreSQL</h2>
                     <p>${postgre}</p>
                 </div>
@@ -107,7 +107,7 @@
         <div class="tbox3">
             <div class="box-style box-style03">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/android.png" width="250" height="250" alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/android.png" width="250" height="250" alt="" /></div>
                     <h2>Android</h2>
                     <p>${android}</p>
                     <a href="https://github.com/AYakubovych/AndroidAppDiplom" class="button">${here}</a>
@@ -119,7 +119,7 @@
         <div class="tbox1">
             <div class="box-style box-style01">
                 <div class="content">
-                    <div class="image"><img src="${pageContext.request.contextPath}images/tomcat.jpg" width="250" height="250" alt="" /></div>
+                    <div class="image"><img src="${pageContext.request.contextPath}/images/tomcat.jpg" width="250" height="250" alt="" /></div>
                     <h2>Tomcat</h2>
                     <p>${tomcat}</p>
                 </div>
@@ -128,7 +128,7 @@
         <div class="tbox2">
             <div class="box-style box-style02">
                 <div class="content">
-                    <div class="image"><img  src="${pageContext.request.contextPath}images/ubuntu.png" width="250" height="250"alt="" /></div>
+                    <div class="image"><img  src="${pageContext.request.contextPath}/images/ubuntu.png" width="250" height="250"alt="" /></div>
                     <h2>Ubuntu</h2>
                     <p>${ubuntu}</p>
                 </div>
