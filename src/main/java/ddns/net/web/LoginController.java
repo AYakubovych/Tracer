@@ -31,60 +31,20 @@ public class LoginController {
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Value("${mail}")
-    private String email;
+    private String test_email;
 
     @Value("${pass}")
-    private String pass;
+    private String test_pass;
 
-    private MessageSource messageSource;
-    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView open(HttpServletResponse response,Locale locale,Model model,
                              @RequestParam(value = "test",defaultValue = "false") boolean test){
-
         if(test){
-            login(response,email,pass,locale,model);
-            return new ModelAndView("redirect:/");
+            
         }
+
         return new ModelAndView("login");
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView login(HttpServletResponse response,
-                              @RequestParam("email") String email,
-                              @RequestParam("pass") String pass,
-                              Locale locale, Model model){
-
-        User user = userService.findOneByEmail(email);
-
-        if(user == null || !user.getPass().equals(pass)){
-            Message message = new Message();
-            message.setType("error");
-
-            message.setMessage(messageSource.getMessage(
-                    "login.error",new Object[]{},locale));
-
-            model.addAttribute("error_message", message);
-
-            return new ModelAndView("login");
-        }
-
-        Cookie cookie = new Cookie("id",String.valueOf(user.getId()));
-        cookie.setMaxAge(60 * 60 * 24);
-        response.addCookie(cookie);
-
-        return new ModelAndView("redirect:/profile");
-    }
-
-
-    @Autowired
-    public void setMessageSource(MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 }

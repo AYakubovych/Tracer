@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+
 @PropertySource("classpath:/properties/map.properties")
 @RequestMapping("/")
 @Controller
@@ -23,7 +27,7 @@ public class IndexController {
     private Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index(Model model){
+    public ModelAndView index(Model model, HttpServletResponse response){
         model.addAttribute("api_key", API_KEY);
         return new ModelAndView("index");
     }

@@ -54,8 +54,8 @@
             <div class = "center_border">
 
                 <c:choose>
-                    <c:when test="${not empty error_message}">
-                        <h4 class="${error_message.type}">${error_message.message}</h4>
+                    <c:when test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+                       ${SPRING_SECURITY_LAST_EXCEPTION.message}
                     </c:when>
                     <c:otherwise>
                         <h4 class="text">${head_log_in}</h4>
@@ -64,10 +64,10 @@
 
 
             <div class = "form_block">
-                <form method="post">
-                     <input type="text" id="email" name = "email" placeholder="${mail}">
+                <form action="login" method="post">
+                     <input type="text"  name = "username" placeholder="${mail}">
 
-                     <input type="password" id="pass" name="pass" placeholder="${pass}">
+                     <input type="password" name="password" placeholder="${pass}">
 
                     <button type="submit" class="submit_button">${submit}</button>
 

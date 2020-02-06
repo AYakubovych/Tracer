@@ -100,7 +100,7 @@
                         </c:when>
                         <c:otherwise>
                             <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a>
-                            <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/login">${head_log_in}</a>
+                            <a class="form_button" style="background: #204969;" href="${pageContext.request.contextPath}/perform_login">${head_log_in}</a>
                         </c:otherwise>
                     </c:choose>
                 </div>

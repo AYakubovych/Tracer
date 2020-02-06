@@ -41,7 +41,7 @@ public class TrackingController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView tracking(Model model,
                                  RedirectAttributes redirectAttributes,
-                                 @CookieValue(value = "id", defaultValue = "0") int id){
+                                 @CookieValue(value = "id", defaultValue = "0") long id){
 
 
         if(id != 0){
