@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @RequestMapping("/profile")
@@ -33,12 +34,12 @@ public class ProfileController {
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView profile(@CookieValue(value = "id", defaultValue = "0") int id,
+    public ModelAndView profile(HttpServletRequest request,
                                 Model model,
                                 RedirectAttributes redirectAttributes){
 
-        if(id > 0){
-            User user = userService.findOneById(id);
+        if(request.getRemoteUser() != null){
+            User user = userService.findOneByEmail(request.getRemoteUser());
             model.addAttribute("user",user);
 
             return new ModelAndView("profile");

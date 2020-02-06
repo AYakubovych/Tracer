@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <spring:message key="create.form.message" var="profile_message"/>
 <spring:message key="all.head.profile" var="profile"/>
 <spring:message key="head.create.profile" var="head_createp_rofile"/>
@@ -37,17 +39,14 @@
         <div id="menu" class="container">
             <ul>
                 <li class="current_page_item" style="float: left"><a href="/">${head_main}</a></li>
-                <c:choose>
-                    <c:when test="${cookie.containsKey('id') }">
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
-                    </c:otherwise>
-                </c:choose>
-
+                <sec:authorize access="!isAuthenticated()">
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
+                </sec:authorize>
             </ul>
         </div>
     </div>

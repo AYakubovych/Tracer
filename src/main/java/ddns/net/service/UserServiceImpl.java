@@ -6,6 +6,9 @@ import ddns.net.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +22,13 @@ import java.util.List;
 @Service
 @Repository
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
     final static String ALL_USERS_NATIVE_QUERY = "select id, email, last_name,"+
             "name, pass from users";
 
     private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired
     private UserRepository userRepository;
 
     @Transactional(readOnly = true)
@@ -54,7 +56,18 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public User findOneById(int id){
+    public User findOneById(long id){
         return userRepository.findOneById(id);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public User findOneByName(String name) {
+        return userRepository.findOneByName(name);
+    }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 }

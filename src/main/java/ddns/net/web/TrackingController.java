@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,38 +42,38 @@ public class TrackingController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView tracking(Model model,
                                  RedirectAttributes redirectAttributes,
-                                 @CookieValue(value = "id", defaultValue = "0") int id){
+                                 HttpServletRequest request){
 
+        if(request.getRemoteUser() == null){
+            Message message = new Message();
+            message.setMessage("Cookie expire");
+            message.setType("error");
 
-        if(id != 0){
-            User user = userService.findOneById(id);
-            List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
-
-            Map<String,List<LocationData> > locationMap = new HashMap<>();
-            List<LocationData> timeList = new ArrayList<>();
-            String date = "";
-
-            for (LocationData location: locationDataList) {
-                date = location.getDate();
-
-                if(!locationMap.containsKey(date)){
-                    timeList = new ArrayList<>();
-                }
-                timeList.add(location);
-                locationMap.put(date,timeList);
-            }
-
-            model.addAttribute("locationMap", locationMap);
-            model.addAttribute("api_key", API_KEY);
-
-            return new ModelAndView("tracking");
+            redirectAttributes.addFlashAttribute("error_message", message);
+            return new ModelAndView("redirect:/login");
         }
-        Message message = new Message();
-        message.setMessage("Cookie expire");
-        message.setType("error");
 
-        redirectAttributes.addFlashAttribute("error_message", message);
-        return new ModelAndView("redirect:/login");
+        User user = userService.findOneByEmail(request.getRemoteUser());
+        List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
+
+        Map<String,List<LocationData> > locationMap = new HashMap<>();
+        List<LocationData> timeList = new ArrayList<>();
+        String date = "";
+
+        for (LocationData location: locationDataList) {
+            date = location.getDate();
+
+            if(!locationMap.containsKey(date)){
+                timeList = new ArrayList<>();
+            }
+            timeList.add(location);
+            locationMap.put(date,timeList);
+        }
+
+        model.addAttribute("locationMap", locationMap);
+        model.addAttribute("api_key", API_KEY);
+
+        return new ModelAndView("tracking");
     }
 
     @Autowired

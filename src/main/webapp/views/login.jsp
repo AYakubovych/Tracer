@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <spring:message key="head.create.profile" var="head_createp_rofile"/>
 <spring:message key="head.profile" var="head_profile"/>
@@ -33,17 +34,14 @@
         <div id="menu" class="container">
             <ul>
                 <li class="current_page_item" style="float: left"><a href="/">${head_main}</a></li>
-                <c:choose>
-                    <c:when test="${cookie.containsKey('id') }">
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
-                    </c:otherwise>
-                </c:choose>
-
+                <sec:authorize access="!isAuthenticated()">
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
+                </sec:authorize>
             </ul>
         </div>
     </div>
@@ -54,8 +52,8 @@
             <div class = "center_border">
 
                 <c:choose>
-                    <c:when test="${not empty error_message}">
-                        <h4 class="${error_message.type}">${error_message.message}</h4>
+                    <c:when test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+                       ${SPRING_SECURITY_LAST_EXCEPTION.message}
                     </c:when>
                     <c:otherwise>
                         <h4 class="text">${head_log_in}</h4>
@@ -64,10 +62,10 @@
 
 
             <div class = "form_block">
-                <form method="post">
-                     <input type="text" id="email" name = "email" placeholder="${mail}">
+                <form action="login" method="post">
+                     <input type="text"  name = "username" placeholder="${mail}">
 
-                     <input type="password" id="pass" name="pass" placeholder="${pass}">
+                     <input type="password" name="password" placeholder="${pass}">
 
                     <button type="submit" class="submit_button">${submit}</button>
 

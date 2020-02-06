@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <spring:message key="create.form.name" var="name"/>
 <spring:message key="create.form.email" var="mail"/>
 <spring:message key="create.form.second_name" var="l_name"/>
@@ -35,17 +36,14 @@
         <div id="menu" class="container">
             <ul>
                 <li class="current_page_item" style="float: left"><a href="/">${head_main}</a></li>
-                <c:choose>
-                    <c:when test="${cookie.containsKey('id') }">
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/logout">Log Out</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/create">Create Profile</a></li>
-                        <li style="float: right"><a href="${pageContext.request.contextPath}/login">Log In</a></li>
-                    </c:otherwise>
-                </c:choose>
-
+                <sec:authorize access="!isAuthenticated()">
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/profile">${head_profile}</a></li>
+                    <li style="float: right"><a href="${pageContext.request.contextPath}/logout">${head_log_out}</a></li>
+                </sec:authorize>
             </ul>
         </div>
     </div>
