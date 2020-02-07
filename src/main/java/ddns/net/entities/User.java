@@ -1,5 +1,6 @@
 package ddns.net.entities;
 
+import com.google.errorprone.annotations.concurrent.LazyInit;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.persistence.*;

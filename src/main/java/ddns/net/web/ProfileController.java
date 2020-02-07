@@ -28,9 +28,7 @@ public class ProfileController {
     private Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
     private UserService userService;
-
     private ChildService childService;
-
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
