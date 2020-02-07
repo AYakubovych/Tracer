@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/create").permitAll()
                 .mvcMatchers("/android/**").permitAll()
                 .and().formLogin().loginPage("/login")
-                .defaultSuccessUrl("/", true).permitAll()
+                .defaultSuccessUrl("/profile", true).permitAll()
                 .and().logout().invalidateHttpSession(true).deleteCookies("id")
                 ;
     }

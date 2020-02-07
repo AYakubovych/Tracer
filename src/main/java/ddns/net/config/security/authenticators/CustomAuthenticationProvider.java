@@ -1,4 +1,4 @@
-package ddns.net.authenticators;
+package ddns.net.config.security.authenticators;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 

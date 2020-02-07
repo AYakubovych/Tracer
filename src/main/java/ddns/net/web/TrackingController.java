@@ -1,9 +1,9 @@
 package ddns.net.web;
 
-import ddns.net.entities.LocationData;
-import ddns.net.entities.User;
-import ddns.net.service.LocationDataService;
-import ddns.net.service.UserService;
+import ddns.net.data.entities.LocationData;
+import ddns.net.data.entities.User;
+import ddns.net.data.service.LocationDataService;
+import ddns.net.data.service.UserService;
 import ddns.net.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,17 +40,9 @@ public class TrackingController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView tracking(Model model,
-                                 RedirectAttributes redirectAttributes,
                                  HttpServletRequest request){
 
-        if(request.getRemoteUser() == null){
-            Message message = new Message();
-            message.setMessage("Cookie expire");
-            message.setType("error");
 
-            redirectAttributes.addFlashAttribute("error_message", message);
-            return new ModelAndView("redirect:/login");
-        }
 
         User user = userService.findOneByEmail(request.getRemoteUser());
         List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());

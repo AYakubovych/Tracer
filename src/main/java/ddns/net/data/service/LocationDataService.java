@@ -1,7 +1,7 @@
-package ddns.net.service;
+package ddns.net.data.service;
 
 
-import ddns.net.entities.LocationData;
+import ddns.net.data.entities.LocationData;
 
 import java.util.List;
 

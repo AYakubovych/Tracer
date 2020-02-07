@@ -1,22 +1,15 @@
-package ddns.net.service;
+package ddns.net.data.service;
 
 import com.google.common.collect.Lists;
-import ddns.net.entities.User;
-import ddns.net.repository.UserRepository;
+import ddns.net.data.entities.User;
+import ddns.net.data.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

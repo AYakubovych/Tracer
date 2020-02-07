@@ -1,8 +1,7 @@
-package ddns.net.entities;
+package ddns.net.data.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "child")

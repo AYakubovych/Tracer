@@ -1,6 +1,7 @@
-package ddns.net.service;
+package ddns.net.config.security;
 
-import ddns.net.entities.User;
+import ddns.net.data.entities.User;
+import ddns.net.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

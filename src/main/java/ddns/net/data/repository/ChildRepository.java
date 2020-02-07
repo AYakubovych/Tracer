@@ -1,6 +1,6 @@
-package ddns.net.repository;
+package ddns.net.data.repository;
 
-import ddns.net.entities.Child;
+import ddns.net.data.entities.Child;
 import org.springframework.data.repository.CrudRepository;
 
 

@@ -1,6 +1,6 @@
-package ddns.net.service;
+package ddns.net.data.service;
 
-import ddns.net.entities.User;
+import ddns.net.data.entities.User;
 
 import java.util.List;
 

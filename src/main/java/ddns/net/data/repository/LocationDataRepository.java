@@ -1,6 +1,6 @@
-package ddns.net.repository;
+package ddns.net.data.repository;
 
-import ddns.net.entities.LocationData;
+import ddns.net.data.entities.LocationData;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -1,8 +1,8 @@
-package ddns.net.service;
+package ddns.net.data.service;
 
 
-import ddns.net.entities.Child;
-import ddns.net.repository.ChildRepository;
+import ddns.net.data.entities.Child;
+import ddns.net.data.repository.ChildRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

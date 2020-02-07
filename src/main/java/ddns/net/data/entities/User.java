@@ -1,6 +1,5 @@
-package ddns.net.entities;
+package ddns.net.data.entities;
 
-import com.google.errorprone.annotations.concurrent.LazyInit;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.persistence.*;
@@ -21,6 +20,7 @@ import java.util.Set;
 )
 public class User implements Serializable {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
@@ -33,7 +33,6 @@ public class User implements Serializable {
     @Column(name = "last_name")
     private String last_name;
 
-    @Id
     @Unique
     @NotBlank(message = "create.form.email.error" )
     @Email(message = "create.form.email.error" )

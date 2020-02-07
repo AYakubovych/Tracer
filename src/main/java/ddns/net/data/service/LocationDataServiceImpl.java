@@ -1,7 +1,7 @@
-package ddns.net.service;
+package ddns.net.data.service;
 
-import ddns.net.entities.LocationData;
-import ddns.net.repository.LocationDataRepository;
+import ddns.net.data.entities.LocationData;
+import ddns.net.data.repository.LocationDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

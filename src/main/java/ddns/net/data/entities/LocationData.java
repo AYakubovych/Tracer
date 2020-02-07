@@ -1,4 +1,4 @@
-package ddns.net.entities;
+package ddns.net.data.entities;
 
 
 import javax.persistence.*;

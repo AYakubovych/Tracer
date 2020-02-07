@@ -1,6 +1,6 @@
-package ddns.net.service;
+package ddns.net.config.security;
 
-import ddns.net.entities.User;
+import ddns.net.data.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

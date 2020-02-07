@@ -1,7 +1,7 @@
-package ddns.net.repository;
+package ddns.net.data.repository;
 
 
-import ddns.net.entities.User;
+import ddns.net.data.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -1,24 +1,19 @@
 package ddns.net.web;
 
 
-import ddns.net.entities.Child;
-import ddns.net.entities.LocationData;
-import ddns.net.service.ChildService;
-import ddns.net.service.LocationDataService;
+import ddns.net.data.entities.Child;
+import ddns.net.data.entities.LocationData;
+import ddns.net.data.service.ChildService;
+import ddns.net.data.service.LocationDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

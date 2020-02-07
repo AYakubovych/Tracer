@@ -1,6 +1,6 @@
-package ddns.net.service;
+package ddns.net.data.service;
 
-import ddns.net.entities.Child;
+import ddns.net.data.entities.Child;
 
 public interface ChildService {
 

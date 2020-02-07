@@ -1,9 +1,9 @@
 package ddns.net.web;
 
-import ddns.net.entities.Child;
-import ddns.net.entities.User;
-import ddns.net.service.ChildService;
-import ddns.net.service.UserService;
+import ddns.net.data.entities.Child;
+import ddns.net.data.entities.User;
+import ddns.net.data.service.ChildService;
+import ddns.net.data.service.UserService;
 import ddns.net.util.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,18 +36,10 @@ public class ProfileController {
                                 Model model,
                                 RedirectAttributes redirectAttributes){
 
-        if(request.getRemoteUser() != null){
-            User user = userService.findOneByEmail(request.getRemoteUser());
-            model.addAttribute("user",user);
+        User user = userService.findOneByEmail(request.getRemoteUser());
+        model.addAttribute("user",user);
 
-            return new ModelAndView("profile");
-        }
-        Message message = new Message();
-        message.setMessage("Cookie expire");
-        message.setType("error");
-
-        redirectAttributes.addFlashAttribute("error_message", message);
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("profile");
     }
 
     @RequestMapping(method = RequestMethod.POST)

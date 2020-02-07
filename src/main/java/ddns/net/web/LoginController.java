@@ -1,19 +1,14 @@
 package ddns.net.web;
 
 
-import ddns.net.authenticators.CustomAuthenticationProvider;
-import ddns.net.entities.User;
-import ddns.net.service.UserService;
-import ddns.net.util.Message;
+import ddns.net.config.security.authenticators.CustomAuthenticationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
@@ -23,14 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.executable.ValidateOnExecution;
 import java.util.Locale;
-
-import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
 
 @PropertySource("classpath:/properties/testUser.properties")
 @RequestMapping("/login")
@@ -54,6 +44,9 @@ public class LoginController {
         if(test){
             doAutoLogin(testEmail,testPass,request);
             return new ModelAndView("redirect:/profile");
+        }
+        if(request.getRemoteUser() != null){
+            return new ModelAndView("profile");
         }
 
         return new ModelAndView("login");

@@ -26,7 +26,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan
 @PropertySource("classpath:/properties/db.properties")
-@EnableJpaRepositories(basePackages = "ddns.net.repository")
+@EnableJpaRepositories(basePackages = "ddns.net.data.repository")
 public class JpaConfig {
 
     private static Logger logger = LoggerFactory.getLogger(JpaConfig.class);
@@ -84,7 +84,7 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean factoryBean =
                 new LocalContainerEntityManagerFactoryBean();
 
-        factoryBean.setPackagesToScan("ddns.net.entities");
+        factoryBean.setPackagesToScan("ddns.net.data.entities");
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaProperties(hibernateProperties());
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
