@@ -38,34 +38,40 @@ public class ProfileController {
 
         User user = userService.findOneByEmail(request.getRemoteUser());
         model.addAttribute("user",user);
+        logger.info("Attribute added. User id: " + user.getId());
 
         return new ModelAndView("profile");
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addChild(@ModelAttribute Child childModel,
-                                 @CookieValue("id") int id,
-                                 Locale locale,Model model){
+                                 Locale locale,Model model,
+                                 HttpServletRequest request){
 
-        Message errorMessage = null;
-        User user = null;
-            if(id > 0){
+        User user = userService.findOneByEmail(request.getRemoteUser());
 
-                user = userService.findOneById(id);
-                Child childData = childService.findOneByName(childModel.getName());
+        if(user.getId() > 0){
 
-                if(childData != null){
-                    if(childData.getPass().equals(childModel.getPass())){
+            Child childData = childService.findOneByName(childModel.getName());
 
-                        user.setChild(childData);
-                        userService.save(user);
-                        return new ModelAndView("redirect:/profile");
-                    }
+            if(childData != null){
+                logger.info("Child exist. Child id: " + childData.getId());
+
+                if(childData.getPass().equals(childModel.getPass())){
+                    logger.info("Passwords equal");
+
+                    user.setChild(childData);
+                    userService.save(user);
+                    logger.info("Child added to user");
+
+                    return new ModelAndView("redirect:/profile");
                 }
             }
-        errorMessage = new Message();
+        }
+        Message errorMessage =  new Message();
         errorMessage.setMessage(messageSource.getMessage(
                 "no.such.child",new Object[]{},locale));
+
         errorMessage.setType("error");
 
         model.addAttribute("user",user);

@@ -42,8 +42,6 @@ public class TrackingController {
     public ModelAndView tracking(Model model,
                                  HttpServletRequest request){
 
-
-
         User user = userService.findOneByEmail(request.getRemoteUser());
         List<LocationData> locationDataList = locationDataService.findAllByChildId(user.getChild().getId());
 

@@ -43,9 +43,13 @@ public class LoginController {
                              @RequestParam(value = "test",defaultValue = "false") boolean test){
         if(test){
             doAutoLogin(testEmail,testPass,request);
+            logger.info("Test user authenticated. User e-mail: " + testEmail);
+
             return new ModelAndView("redirect:/profile");
         }
         if(request.getRemoteUser() != null){
+            logger.info("User already authenticated. User e-mail: " + request.getRemoteUser());
+
             return new ModelAndView("profile");
         }
 

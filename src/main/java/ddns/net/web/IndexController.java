@@ -29,6 +29,8 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(Model model, HttpServletResponse response){
         model.addAttribute("api_key", API_KEY);
+        logger.info("Map api key: " + API_KEY + " added to response");
+
         return new ModelAndView("index");
     }
 

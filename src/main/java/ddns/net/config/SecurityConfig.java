@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/profile", true).permitAll()
                 .and().logout().invalidateHttpSession(true).deleteCookies("id")
+                .logoutSuccessUrl("/")
                 ;
     }
 

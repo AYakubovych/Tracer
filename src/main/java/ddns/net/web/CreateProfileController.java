@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,9 +35,7 @@ public class CreateProfileController {
 
     private UserService userService;
     private MessageSource messageSource;
-
-    @Autowired
-    private CustomAuthenticationProvider customAuthenticationProvider;
+    private AuthenticationProvider authenticationProvider;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -54,6 +53,7 @@ public class CreateProfileController {
         message.setType("error");
 
         if(userService.findOneByEmail(user.getEmail()) != null ){
+            logger.error("User with email: " + user.getEmail() + " already exist");
             return new ModelAndView("redirect:/login");
         }
 
@@ -63,20 +63,23 @@ public class CreateProfileController {
             User userDAO = new User(user.getName(), user.getLast_name(), user.getEmail(), user.getPass());
 
             userService.save(userDAO);
+            logger.info("User created. User id: " + userDAO.getId());
             //auth here
             doAutoLogin(userDAO.getEmail(),userDAO.getPass(),request);
+            logger.info("User authenticated. User e-mail: " + userDAO.getEmail());
 
             return new ModelAndView("redirect:/profile");
-
 
         }else if(!user.getConfirm_pass().equals(user.getPass())){
             //passwords not same
             message.setMessage(messageSource.getMessage("create.form.wrong.confirm.pass",new Object[]{},locale));
+            logger.error("Passwords not equal for: " + user.getEmail());
 
         }else{
             //validation error
             String str = messageSource.getMessage(bindingResult.getAllErrors().get(0),locale);
             message.setMessage(messageSource.getMessage(str, new Object[]{}, locale));
+            logger.error("Validation error: " + bindingResult.getAllErrors().get(0));
         }
 
         model.addAttribute("error_message", message);
@@ -89,7 +92,7 @@ public class CreateProfileController {
             // Must be called from request filtered by Spring Security, otherwise SecurityContextHolder is not updated
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
             token.setDetails(new WebAuthenticationDetails(request));
-            Authentication authentication = customAuthenticationProvider.authenticate(token);
+            Authentication authentication = authenticationProvider.authenticate(token);
             logger.debug("Logging in with [{}]", authentication.getPrincipal());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
@@ -107,6 +110,11 @@ public class CreateProfileController {
     @Autowired
     public void setUserService(UserService userService){
         this.userService = userService;
+    }
+
+    @Autowired
+    public  void setAuthenticationProvider(AuthenticationProvider authenticationProvider){
+        this.authenticationProvider = authenticationProvider;
     }
 
     @ModelAttribute

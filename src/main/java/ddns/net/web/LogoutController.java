@@ -11,6 +11,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *  This Controller not in use. Replaced by Spring Security implementation
+ */
 @RequestMapping("/logout")
 @Controller
 public class LogoutController {
@@ -20,6 +23,7 @@ public class LogoutController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
         deleteIdCookies(request.getCookies(),response);
+        logger.info("User logout");
 
         return new ModelAndView("redirect:/");
     }
@@ -30,6 +34,7 @@ public class LogoutController {
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
+        logger.info("Cookies deleted");
     }
 
 }

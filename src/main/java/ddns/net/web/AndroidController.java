@@ -39,11 +39,12 @@ public class AndroidController {
         Child child = childService.findOneByName(username);
 
         if(child != null){
+            logger.error("Child already exist. Return 0 to response");
             return 0;
         }
         child = new Child(username,pass);
         childService.save(child);
-
+        logger.info("Child added to database. Child id: " + child.getId());
         return child.getId();
     }
 
@@ -53,8 +54,10 @@ public class AndroidController {
 
         Child child = childService.findOneByName(username);
         if(child.getPass().equals(pass)){
+            logger.info("Child exist. Id: " + child.getId());
             return child.getId();
         }
+        logger.error("Child does not exist. Return 0 to response");
         return 0;
     }
 
@@ -75,7 +78,6 @@ public class AndroidController {
 
         locationData.setDate(dateArray[0]);
         locationData.setTime(dateArray[1]);
-
         locationDataService.save(locationData);
     }
 
