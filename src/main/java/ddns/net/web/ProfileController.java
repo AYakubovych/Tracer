@@ -38,7 +38,7 @@ public class ProfileController {
 
         User user = userService.findOneByEmail(request.getRemoteUser());
         model.addAttribute("user",user);
-        logger.info("Attribute added. User id: " + user.getId());
+        logger.info("User added as attribute. User id: " + user.getId());
 
         return new ModelAndView("profile");
     }
