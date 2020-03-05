@@ -21,18 +21,33 @@ public class LocationMapCreator {
         List<LocationData> locationDataList = locationDataService.findAllByChildId(childId);
 
         Map<String,List<LocationData> > locationMap = new HashMap<>();
-        List<LocationData> timeList = new ArrayList<>();
-        String date = "";
+        
+//        List<LocationData> timeList = new ArrayList<>();
+//        String date = "";
 
-        for (LocationData location: locationDataList) {
-            date = location.getDate();
+//        for (LocationData location: locationDataList) {
+//            date = location.getDate();
+//
+//            if(!locationMap.containsKey(date)){
+//                timeList = new ArrayList<>();
+//            }
+//            timeList.add(location);
+//            locationMap.put(date,timeList);
+//        }
 
-            if(!locationMap.containsKey(date)){
-                timeList = new ArrayList<>();
-            }
-            timeList.add(location);
-            locationMap.put(date,timeList);
-        }
+        locationDataList.forEach(
+                (location) -> {
+                        List<LocationData> testList;
+
+                        if(!locationMap.containsKey(location.getDate())){
+                            testList = new ArrayList<>();
+                        }else{
+                            testList = locationMap.get(location.getDate());
+                        }
+
+                        testList.add(location);
+                        locationMap.put(location.getDate(),testList);
+                });
 
         return locationMap;
     }
