@@ -35,7 +35,7 @@
     <div id="menu-wrapper">
         <div id="menu" class="container">
             <ul>
-                <li class="current_page_item" style="float: left"><a href="/">${head_main}</a></li>
+                <li class="current_page_item" style="float: left"><a href="${pageContext.request.contextPath}/">${head_main}</a></li>
                 <sec:authorize access="!isAuthenticated()">
                     <li style="float: right"><a href="${pageContext.request.contextPath}/create">${head_createp_rofile}</a></li>
                     <li style="float: right"><a href="${pageContext.request.contextPath}/login">${head_log_in}</a></li>
@@ -47,7 +47,7 @@
             </ul>
         </div>
     </div>
-    <div><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a></div>
+    <div><a href="?lang=ru_RU">[RU]</a><a href="?lang=en_EU">[EN]</a><a href="?lang=pl_PL">[PL]</a></div>
     <!-- Mid pannel -->
 <div class = "center_block">
     <div class="center_top"></div>
