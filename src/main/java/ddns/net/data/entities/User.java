@@ -7,7 +7,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,9 +48,14 @@ public class User implements Serializable {
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    @OneToOne
-    @JoinColumn(name = "child_id")
-    private Child child;
+    @Column
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+    })
+    @JoinTable(name = "user_child",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "child_id")})
+    private List<Child> childs = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Authorities> authorities = new HashSet<>();
@@ -65,12 +72,17 @@ public class User implements Serializable {
         this.enabled = true;
     }
 
-    public Child getChild() {
-        return child;
+    public void addChild(Child child){
+        childs.add(child);
     }
 
-    public void setChild(Child child) {
-        this.child = child;
+
+    public List<Child> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(List<Child> child) {
+        this.childs = child;
     }
 
     public long getId() {

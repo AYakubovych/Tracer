@@ -1,7 +1,10 @@
 package ddns.net.data.entities;
 
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.*;
 
 @Entity
 @Table(name = "child")
@@ -18,6 +21,9 @@ public class Child implements  Serializable {
     @Column(name = "pass")
     private String pass;
 
+    @Column
+    @ManyToMany(mappedBy = "childs")
+    private List<User> users = new ArrayList<>();
 
     public Child(){}
 
@@ -48,6 +54,14 @@ public class Child implements  Serializable {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override

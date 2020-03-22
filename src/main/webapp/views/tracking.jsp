@@ -99,6 +99,12 @@
                     </div>
 
                     <div class = "center_add_target">
+                        <button>Add target</button>
+
+                        <c:forEach items="${childsId}" var = "childId">
+                            <button onclick="location.href = '/tracking/${childId}';">${childId}</button>
+                        </c:forEach>
+
                     </div>
 
                 </div>

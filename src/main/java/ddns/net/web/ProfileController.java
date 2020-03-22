@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Locale;
 
 @RequestMapping("/profile")
@@ -60,7 +61,7 @@ public class ProfileController {
                 if(childData.getPass().equals(childModel.getPass())){
                     logger.info("Passwords equal");
 
-                    user.setChild(childData);
+                    user.addChild(childData);
                     userService.save(user);
                     logger.info("Child added to user");
 
