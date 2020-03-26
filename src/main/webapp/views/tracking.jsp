@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <spring:message key="create.form.message" var="profile_message"/>
 <spring:message key="all.head.profile" var="profile"/>
@@ -10,6 +11,11 @@
 <spring:message key="head.log_out" var="head_log_out"/>
 <spring:message key="head.log_in" var="head_log_in"/>
 <spring:message key="head.main" var="head_main"/>
+
+<spring:message key="name" var="name"/>
+<spring:message key="last.name" var="surname"/>
+<spring:message key="mail" var="mail"/>
+<spring:message key="phone" var="phone"/>
 
 <!--Map scripts -->
 <script>
@@ -72,7 +78,20 @@
 
                 <div class = "center_main_left">
                     <div class="main_left">
-
+                        <div class="inll">
+                            <div class="targetImage">
+                                <img class="imageBor" src="${pageContext.request.contextPath}/images/testIMG.jpg" >
+                            </div>
+                        </div>
+                        <div class="inll">
+                            <div class="data">
+                                <img  src="${pageContext.request.contextPath}/images/settings.png" width="24" height="24">
+                                <h4 class="data_text">${name}: </h4>
+                                <h4 class="data_text">${surname}: </h4>
+                                <h4 class="data_text">${mail}: </h4>
+                                <h4 class="data_text">${phone}:</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -99,10 +118,14 @@
                     </div>
 
                     <div class = "center_add_target">
-                        <button>Add target</button>
-
-                        <c:forEach items="${childsId}" var = "childId">
-                            <button onclick="location.href = '/tracking/${childId}';">${childId}</button>
+                        <div class="inlineDiv">
+                            <button class="halfButton">+</button>
+                        </div>
+                        <div class="inlineDiv">
+                            <button class="halfButton">-</button>
+                        </div>
+                            <c:forEach items="${childsId}" var = "childId">
+                            <button class="testButton" onclick="location.href = '/tracking/${childId}';">${childId}</button>
                         </c:forEach>
 
                     </div>

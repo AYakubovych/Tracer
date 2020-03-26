@@ -73,3 +73,40 @@
     padding: 1em 2em;
     color: #FFFFFF;
 }
+.inlineDiv{
+    display: inline;
+}
+.halfButton{
+    width: 49.466%;
+    height: 10%;
+    margin: 0;
+    padding: 0;
+}
+.testButton{
+    width: 100%;
+    height: 10%;
+}
+.targetImage{
+    padding-top: 16px;
+    padding-left: 16px;
+}
+.imageBor{
+    border-width:thin;
+    border-style:solid;
+    border-color:#204969;
+    width:189px;
+    height:252px;
+}
+.data{
+    padding-left: 16px;
+    float: left;
+}
+.inll{
+    display: inline-block;
+}
+.data_text{
+    text-align:left;
+    font-family:Courier New, italic;
+    font-size: 20px;
+    color: #204969
+}
