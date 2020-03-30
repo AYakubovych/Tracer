@@ -1,8 +1,8 @@
 package ddns.net.data.service;
 
 
-import ddns.net.data.entities.Child;
-import ddns.net.data.repository.ChildRepository;
+import ddns.net.data.entities.Target;
+import ddns.net.data.repository.TargetRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,28 +18,28 @@ public class ChildServiceImpl implements ChildService {
     private static Logger logger = LoggerFactory.getLogger(ChildServiceImpl.class);
 
 
-    private ChildRepository childRepository;
+    private TargetRepository targetRepository;
 
     @Transactional
     @Override
-    public Child save(Child child){
-        return childRepository.save(child);
+    public Target save(Target child){
+        return targetRepository.save(child);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Child findOneByName(String name){
-        return childRepository.findOneByName(name);
+    public Target findOneByName(String name){
+        return targetRepository.findOneByName(name);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Child findOneById(int id){
-        return childRepository.findOneById(id);
+    public Target findOneById(int id){
+        return targetRepository.findOneById(id);
     }
 
     @Autowired
-    public void setChildRepository(ChildRepository childRepository) {
-        this.childRepository = childRepository;
+    public void setTargetRepository(TargetRepository targetRepository) {
+        this.targetRepository = targetRepository;
     }
 }
