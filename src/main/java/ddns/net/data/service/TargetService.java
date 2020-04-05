@@ -7,5 +7,6 @@ public interface TargetService {
     Target save(Target child);
     Target findOneByName(String name);
     Target findOneById(int id);
+    Target findOneByEmail(String email);
 
 }

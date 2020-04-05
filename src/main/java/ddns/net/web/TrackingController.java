@@ -45,6 +45,11 @@ public class TrackingController {
 
         User user = userService.findOneByEmail(request.getRemoteUser());
 
+        if(user.getTargets().size() <= 0){
+            logger.info("User have no targets");
+            return new ModelAndView("profile");
+        }
+
         int targetId = 0;
 
         if(optionalTargetId.isPresent()){
@@ -65,7 +70,7 @@ public class TrackingController {
         model.addAttribute("targetInfo",user.getTargets().get(targetId));
         logger.info("TargetInfo added as attribute for target with index: " + targetId);
 
-        //child position list
+        //target indexation
         List<Integer> idList = new ArrayList<>();
         user.getTargets().forEach(
                 (target) -> idList.add(user.getTargets().indexOf(target) + 1)

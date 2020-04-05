@@ -79,9 +79,9 @@
                             </c:otherwise>
                         </c:choose>
 
-                        <form:form method="post" modelAttribute="child" >
+                        <form:form method="post" modelAttribute="target" >
 
-                            <form:input path="name" id="email" name = "email" placeholder="${child_mail}"/>
+                            <form:input path="email" id="email" name = "email" placeholder="${child_mail}"/>
 
                             <form:password path="pass" id="pass" name="pass" placeholder="${child_pass}"/>
 

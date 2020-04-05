@@ -38,6 +38,12 @@ public class TargetServiceImpl implements TargetService {
         return targetRepository.findOneById(id);
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public Target findOneByEmail(String email){
+        return targetRepository.findOneByEmail(email);
+    }
+
     @Autowired
     public void setTargetRepository(TargetRepository targetRepository) {
         this.targetRepository = targetRepository;

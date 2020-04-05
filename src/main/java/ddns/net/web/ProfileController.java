@@ -49,9 +49,18 @@ public class ProfileController {
 
         User user = userService.findOneByEmail(request.getRemoteUser());
 
+        Message errorMessage =  new Message();
+        errorMessage.setType("error");
+
         if(user.getId() > 0){
 
-            Target targetData = targetService.findOneByName(targetModel.getName());
+            Target targetData = targetService.findOneByEmail(targetModel.getEmail());
+
+            if(targetData == null){
+                logger.info("Target data == null");
+                errorMessage.setMessage(messageSource.getMessage(
+                        "no.such.child",new Object[]{},locale));
+            }
 
             if(targetData != null){
                 logger.info("Child exist. Child id: " + targetData.getId());
@@ -65,13 +74,10 @@ public class ProfileController {
 
                     return new ModelAndView("redirect:/profile");
                 }
+                logger.info("Passwords not equal");
+                errorMessage.setMessage("Passwords not equal");
             }
         }
-        Message errorMessage =  new Message();
-        errorMessage.setMessage(messageSource.getMessage(
-                "no.such.child",new Object[]{},locale));
-
-        errorMessage.setType("error");
 
         model.addAttribute("user",user);
         model.addAttribute("message", errorMessage);
@@ -80,7 +86,7 @@ public class ProfileController {
 
     @ModelAttribute
     public void init(Model model){
-        model.addAttribute("child",new Target());
+        model.addAttribute("target",new Target());
     }
 
     @Autowired

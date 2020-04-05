@@ -3,14 +3,14 @@ values(
  1,'Anton','Yakubovych','asd@asd.com','asd',true
 );
 
-INSERT INTO  target (id, name, pass)
+INSERT INTO  target (id, email, name, surname,pass)
 values(
-          1,'asd@asd.com', 'asd'
+          1,'asd@asd.com', 'Anton', 'Yakubovych', 'asd'
       );
 
-INSERT INTO  target (id, name, pass)
+INSERT INTO  target (id, email, name, surname,pass)
 values(
-          2,'zzz@zzz.com', 'zzz'
+          2,'zzz@zzz.com', 'Anastasia', 'Borovets','zzz'
       );
 
 INSERT INTO user_target (user_id,target_id)

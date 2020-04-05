@@ -1,6 +1,5 @@
 package ddns.net.web;
 
-import ddns.net.config.security.authenticators.CustomAuthenticationProvider;
 import ddns.net.data.entities.User;
 import ddns.net.data.entities.UserWithConfirmPass;
 import ddns.net.data.service.UserService;
@@ -57,7 +56,7 @@ public class CreateProfileController {
             return new ModelAndView("redirect:/login");
         }
 
-        //if all good
+        //validation
         if(user.getConfirm_pass().equals(user.getPass()) && !bindingResult.hasErrors()){
 
             User userDAO = new User(user.getName(), user.getLast_name(), user.getEmail(), user.getPass());
