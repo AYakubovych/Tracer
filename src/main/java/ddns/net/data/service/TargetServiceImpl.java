@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Repository
 @Transactional
-public class ChildServiceImpl implements ChildService {
+public class TargetServiceImpl implements TargetService {
 
-    private static Logger logger = LoggerFactory.getLogger(ChildServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(TargetServiceImpl.class);
 
 
     private TargetRepository targetRepository;

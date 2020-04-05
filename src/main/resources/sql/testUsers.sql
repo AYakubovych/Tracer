@@ -3,22 +3,22 @@ values(
  1,'Anton','Yakubovych','asd@asd.com','asd',true
 );
 
-INSERT INTO  child (id, name, pass)
+INSERT INTO  target (id, name, pass)
 values(
           1,'asd@asd.com', 'asd'
       );
 
-INSERT INTO  child (id, name, pass)
+INSERT INTO  target (id, name, pass)
 values(
           2,'zzz@zzz.com', 'zzz'
       );
 
-INSERT INTO user_child (user_id,child_id)
+INSERT INTO user_target (user_id,target_id)
 values (
         1,1
        );
 
-INSERT INTO user_child (user_id,child_id)
+INSERT INTO user_target (user_id,target_id)
 values (
            1,2
        );

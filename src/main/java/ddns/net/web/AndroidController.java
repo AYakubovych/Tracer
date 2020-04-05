@@ -1,9 +1,9 @@
 package ddns.net.web;
 
 
-import ddns.net.data.entities.Child;
+import ddns.net.data.entities.Target;
 import ddns.net.data.entities.LocationData;
-import ddns.net.data.service.ChildService;
+import ddns.net.data.service.TargetService;
 import ddns.net.data.service.LocationDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,22 +29,22 @@ public class AndroidController {
 
     private static final SimpleDateFormat FULL_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-    private ChildService childService;
+    private TargetService childService;
     private LocationDataService locationDataService;
 
     @RequestMapping("/registration")
-    public long createChildProfile(@RequestParam("username")String username,
+    public long createTarget(@RequestParam("username")String mail,
                                    @RequestParam("pass") String pass){
 
-        Child child = childService.findOneByName(username);
+        Target child = childService.findOneByName(mail);
 
         if(child != null){
-            logger.error("Child already exist. Return 0 to response");
+            logger.error("Target already exist. Return 0 to response");
             return 0;
         }
-        child = new Child(username,pass);
+        child = new Target(mail,pass);
         childService.save(child);
-        logger.info("Child added to database. Child id: " + child.getId());
+        logger.info("Target added to database. Target id: " + child.getId());
         return child.getId();
     }
 
@@ -52,12 +52,12 @@ public class AndroidController {
     public long login(@RequestParam("username")String username,
                       @RequestParam("pass") String pass){
 
-        Child child = childService.findOneByName(username);
+        Target child = childService.findOneByName(username);
         if(child.getPass().equals(pass)){
-            logger.info("Child exist. Id: " + child.getId());
+            logger.info("Target exist. Id: " + child.getId());
             return child.getId();
         }
-        logger.error("Child does not exist. Return 0 to response");
+        logger.error("Target does not exist. Return 0 to response");
         return 0;
     }
 
@@ -72,7 +72,7 @@ public class AndroidController {
         String[] dateArray = d.split(" ");
 
         LocationData locationData = new LocationData();
-        locationData.setChildId(id);
+        locationData.setTargetId(id);
         locationData.setLatitude(lat);
         locationData.setLongitude(lon);
 
@@ -87,7 +87,7 @@ public class AndroidController {
     }
 
     @Autowired
-    public void setChildService(ChildService childService) {
+    public void setChildService(TargetService childService) {
         this.childService = childService;
     }
 }

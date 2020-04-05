@@ -36,7 +36,7 @@ public class LocationDataServiceImpl implements LocationDataService {
     @Transactional(readOnly = true)
     @Override
     public List<LocationData> findAllByChildId(int id) {
-        return locationDataRepository.findAllByChildId(id);
+        return locationDataRepository.findAllByTargetId(id);
     }
 
 

@@ -1,8 +1,8 @@
 package ddns.net.web;
 
-import ddns.net.data.entities.Child;
+import ddns.net.data.entities.Target;
 import ddns.net.data.entities.User;
-import ddns.net.data.service.ChildService;
+import ddns.net.data.service.TargetService;
 import ddns.net.data.service.UserService;
 import ddns.net.util.Message;
 import org.slf4j.Logger;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Locale;
 
 @RequestMapping("/profile")
@@ -29,7 +27,7 @@ public class ProfileController {
     private Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
     private UserService userService;
-    private ChildService childService;
+    private TargetService targetService;
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -45,7 +43,7 @@ public class ProfileController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addChild(@ModelAttribute Child childModel,
+    public ModelAndView addTarget(@ModelAttribute Target targetModel,
                                  Locale locale,Model model,
                                  HttpServletRequest request){
 
@@ -53,15 +51,15 @@ public class ProfileController {
 
         if(user.getId() > 0){
 
-            Child childData = childService.findOneByName(childModel.getName());
+            Target targetData = targetService.findOneByName(targetModel.getName());
 
-            if(childData != null){
-                logger.info("Child exist. Child id: " + childData.getId());
+            if(targetData != null){
+                logger.info("Child exist. Child id: " + targetData.getId());
 
-                if(childData.getPass().equals(childModel.getPass())){
+                if(targetData.getPass().equals(targetModel.getPass())){
                     logger.info("Passwords equal");
 
-                    user.addChild(childData);
+                    user.addTarget(targetData);
                     userService.save(user);
                     logger.info("Child added to user");
 
@@ -82,12 +80,12 @@ public class ProfileController {
 
     @ModelAttribute
     public void init(Model model){
-        model.addAttribute("child",new Child());
+        model.addAttribute("child",new Target());
     }
 
     @Autowired
-    public void setChildService(ChildService childService) {
-        this.childService = childService;
+    public void setTargetService(TargetService targetService) {
+        this.targetService = targetService;
     }
 
     @Autowired

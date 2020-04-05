@@ -15,7 +15,7 @@ public class LocationData implements Serializable {
     private long id;
 
     @Column
-    private int childId;
+    private int targetId;
 
     @Column
     private double latitude;
@@ -33,15 +33,15 @@ public class LocationData implements Serializable {
 
     @Override
     public String toString(){
-        return id + " " + childId + " " + latitude + " " + longitude + " " + date + " " + time;
+        return id + " " + targetId + " " + latitude + " " + longitude + " " + date + " " + time;
     }
 
-    public int getChildId() {
-        return childId;
+    public int getTargetId() {
+        return targetId;
     }
 
-    public void setChildId(int childId) {
-        this.childId = childId;
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
     }
 
     public long getId() {

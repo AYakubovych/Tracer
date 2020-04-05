@@ -1,14 +1,14 @@
 package ddns.net.data.entities;
 
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@Table(name = "child")
-public class Child implements  Serializable {
+@Table(name = "target")
+public class Target implements  Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,17 +18,26 @@ public class Child implements  Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "pass")
     private String pass;
 
+    @Column(name = "phone")
+    private String phone;
+
     @Column
-    @ManyToMany(mappedBy = "childs")
+    @ManyToMany(mappedBy = "targets")
     private List<User> users = new ArrayList<>();
 
-    public Child(){}
+    public Target(){}
 
-    public Child(String name, String pass) {
-        this.name = name;
+    public Target(String email, String pass) {
+        this.email = email;
         this.pass = pass;
     }
 
@@ -62,6 +71,30 @@ public class Child implements  Serializable {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override

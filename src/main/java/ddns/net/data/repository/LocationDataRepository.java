@@ -8,7 +8,7 @@ import java.util.List;
 public interface LocationDataRepository extends CrudRepository<LocationData, Long> {
 
     LocationData findOneById(long id);
-    List<LocationData> findAllByChildId(int id);
+    List<LocationData> findAllByTargetId(int id);
 
 
 }

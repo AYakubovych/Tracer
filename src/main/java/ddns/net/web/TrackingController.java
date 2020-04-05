@@ -38,38 +38,41 @@ public class TrackingController {
     private LocationMapCreator locationMapCreator;
     private UserService userService;
 
-    @RequestMapping(value = { "" ,"/{optionalChildId}"} ,method = RequestMethod.GET)
+    @RequestMapping(value = { "" ,"/{optionalTargetId}"} ,method = RequestMethod.GET)
     public ModelAndView tracking(Model model,
                                  HttpServletRequest request,
-                                @PathVariable(required = false) Optional<Integer> optionalChildId){
+                                @PathVariable(required = false) Optional<Integer> optionalTargetId){
 
         User user = userService.findOneByEmail(request.getRemoteUser());
 
-        int childId = 0;
+        int targetId = 0;
 
-        if(optionalChildId.isPresent()){
-            childId =  optionalChildId.get() - 1;
+        if(optionalTargetId.isPresent()){
+            targetId =  optionalTargetId.get() - 1;
         }
 
-        if(user.getChilds().get(childId).getId() <= 0){
+        if(user.getTargets().get(targetId).getId() <= 0){
             logger.error("ChildId <= 0 for user witf id: " + user.getId());
             //No id logic
         }
 
-        Map locationMap = locationMapCreator.createMap(user.getChilds().get(childId).getId());
+        Map locationMap = locationMapCreator.createMap(user.getTargets().get(targetId).getId());
         logger.info("Location data map created for user with id: " + user.getId());
 
         model.addAttribute("locationMap", locationMap);
         logger.info("Location data added as attribute for user with id: " + user.getId());
 
+        model.addAttribute("targetInfo",user.getTargets().get(targetId));
+        logger.info("TargetInfo added as attribute for target with index: " + targetId);
+
         //child position list
         List<Integer> idList = new ArrayList<>();
-        user.getChilds().forEach(
-                (child) -> idList.add(user.getChilds().indexOf(child) + 1)
+        user.getTargets().forEach(
+                (target) -> idList.add(user.getTargets().indexOf(target) + 1)
         );
 
-        model.addAttribute("childsId", idList);
-        logger.info("Child positions list added as attribute for user with id: " + user.getId());
+        model.addAttribute("targetsId", idList);
+        logger.info("Target positions list added as attribute for user with id: " + user.getId());
 
         model.addAttribute("api_key", API_KEY);
         logger.info("Api key added as attribute for user with id: " + user.getId());

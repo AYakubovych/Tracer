@@ -52,10 +52,10 @@ public class User implements Serializable {
     @ManyToMany(cascade = {
             CascadeType.ALL
     })
-    @JoinTable(name = "user_child",
+    @JoinTable(name = "user_target",
             joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "child_id")})
-    private List<Child> childs = new ArrayList<>();
+            inverseJoinColumns = {@JoinColumn(name = "target_id")})
+    private List<Target> targets = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Authorities> authorities = new HashSet<>();
@@ -72,17 +72,16 @@ public class User implements Serializable {
         this.enabled = true;
     }
 
-    public void addChild(Child child){
-        childs.add(child);
+    public void addTarget(Target child){
+        targets.add(child);
     }
 
-
-    public List<Child> getChilds() {
-        return childs;
+    public List<Target> getTargets() {
+        return targets;
     }
 
-    public void setChilds(List<Child> child) {
-        this.childs = child;
+    public void setTargets(List<Target> targets) {
+        this.targets = targets;
     }
 
     public long getId() {

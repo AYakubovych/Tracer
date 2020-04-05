@@ -62,8 +62,8 @@
                 <h4 class="in_box_text">${mail}: ${user.email}</h4>
 
                 <c:choose>
-                    <c:when test="${user.childs.get(0) != null}">
-                        <h4 class="in_box_text">${tracking}: ${user.childs.get(0).name}</h4>
+                    <c:when test="${user.targets.size() > 0}">
+                        <h4 class="in_box_text">${tracking}: ${user.targets.get(0).name}</h4>
                         <form action="${pageContext.request.contextPath}/tracking">
                         <button class="submit_button" type="submit">Map</button>
                         </form>

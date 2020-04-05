@@ -80,16 +80,16 @@
                     <div class="main_left">
                         <div class="inll">
                             <div class="targetImage">
-                                <img class="imageBor" src="${pageContext.request.contextPath}/images/testIMG.jpg" >
+                                <img class="imageBor" src="${pageContext.request.contextPath}/images/nophoto.png" >
                             </div>
                         </div>
                         <div class="inll">
                             <div class="data">
-                                <img  src="${pageContext.request.contextPath}/images/settings.png" width="24" height="24">
-                                <h4 class="data_text">${name}: </h4>
-                                <h4 class="data_text">${surname}: </h4>
-                                <h4 class="data_text">${mail}: </h4>
-                                <h4 class="data_text">${phone}:</h4>
+                                <input type="image" src="${pageContext.request.contextPath}/images/settings.png" onclick="location.href = '/profile';" width="24" height="24" alt="Settings">
+                                <h4 class="data_text">${name}: ${targetInfo.name}</h4>
+                                <h4 class="data_text">${surname}: ${targetInfo.surname}</h4>
+                                <h4 class="data_text">${mail}: ${targetInfo.email}</h4>
+                                <h4 class="data_text">${phone}: ${targetInfo.phone}</h4>
                             </div>
                         </div>
                     </div>
@@ -124,8 +124,8 @@
                         <div class="inlineDiv">
                             <button class="halfButton">-</button>
                         </div>
-                            <c:forEach items="${childsId}" var = "childId">
-                            <button class="testButton" onclick="location.href = '/tracking/${childId}';">${childId}</button>
+                            <c:forEach items="${targetsId}" var = "targetId">
+                            <button class="testButton" onclick="location.href = '/tracking/${targetId}';">${targetId}</button>
                         </c:forEach>
 
                     </div>
