@@ -15,7 +15,7 @@ public class LocationData implements Serializable {
     private long id;
 
     @Column
-    private int targetId;
+    private long targetId;
 
     @Column
     private double latitude;
@@ -36,11 +36,11 @@ public class LocationData implements Serializable {
         return id + " " + targetId + " " + latitude + " " + longitude + " " + date + " " + time;
     }
 
-    public int getTargetId() {
+    public long getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(int targetId) {
+    public void setTargetId(long targetId) {
         this.targetId = targetId;
     }
 

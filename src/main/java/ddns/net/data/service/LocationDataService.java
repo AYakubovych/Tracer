@@ -9,6 +9,6 @@ public interface LocationDataService  {
 
     LocationData save(LocationData locationData);
     LocationData findOneById(long id);
-    List<LocationData> findAllByChildId(int id);
+    List<LocationData> findAllByChildId(long id);
 
 }

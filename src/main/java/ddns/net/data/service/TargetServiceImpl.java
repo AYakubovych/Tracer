@@ -34,7 +34,7 @@ public class TargetServiceImpl implements TargetService {
 
     @Transactional(readOnly = true)
     @Override
-    public Target findOneById(int id){
+    public Target findOneById(long id){
         return targetRepository.findOneById(id);
     }
 

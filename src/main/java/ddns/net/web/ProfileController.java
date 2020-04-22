@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -82,6 +80,15 @@ public class ProfileController {
         model.addAttribute("user",user);
         model.addAttribute("message", errorMessage);
         return new ModelAndView("profile");
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE,value = "/{index}")
+    public void deleteTarget(@PathVariable int index,
+                             HttpServletRequest request){
+        logger.info("delete");
+        User user = userService.findOneByEmail(request.getRemoteUser());
+        user.getTargets().remove(index - 1);
+        userService.save(user);
     }
 
     @ModelAttribute

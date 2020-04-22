@@ -16,7 +16,7 @@ public class LocationMapCreator {
     private LocationDataService locationDataService;
 
 
-    public Map<String,List<LocationData>> createMap(int childId){
+    public Map<String,List<LocationData>> createMap(long childId){
 
         List<LocationData> locationDataList = locationDataService.findAllByChildId(childId);
 

@@ -4,6 +4,7 @@ import ddns.net.data.entities.LocationData;
 import ddns.net.data.entities.User;
 import ddns.net.data.service.LocationDataService;
 import ddns.net.data.service.UserService;
+import ddns.net.util.IntegerWithString;
 import ddns.net.util.LocationMapCreator;
 import ddns.net.util.Message;
 import org.checkerframework.checker.units.qual.A;
@@ -38,10 +39,10 @@ public class TrackingController {
     private LocationMapCreator locationMapCreator;
     private UserService userService;
 
-    @RequestMapping(value = { "" ,"/{optionalTargetId}"} ,method = RequestMethod.GET)
+    @RequestMapping(value = { "" ,"/{optionalTargetIndex}"} ,method = RequestMethod.GET)
     public ModelAndView tracking(Model model,
                                  HttpServletRequest request,
-                                @PathVariable(required = false) Optional<Integer> optionalTargetId){
+                                @PathVariable(required = false) Optional<Integer> optionalTargetIndex){
 
         User user = userService.findOneByEmail(request.getRemoteUser());
 
@@ -50,33 +51,34 @@ public class TrackingController {
             return new ModelAndView("profile");
         }
 
-        int targetId = 0;
+        int targetIndex = 0;
 
-        if(optionalTargetId.isPresent()){
-            targetId =  optionalTargetId.get() - 1;
+        if(optionalTargetIndex.isPresent()){
+            targetIndex =  optionalTargetIndex.get() - 1;
         }
 
-        if(user.getTargets().get(targetId).getId() <= 0){
+        if(user.getTargets().get(targetIndex).getId() <= 0){
             logger.error("ChildId <= 0 for user witf id: " + user.getId());
             //No id logic
         }
 
-        Map locationMap = locationMapCreator.createMap(user.getTargets().get(targetId).getId());
+        Map locationMap = locationMapCreator.createMap(user.getTargets().get(targetIndex).getId());
         logger.info("Location data map created for user with id: " + user.getId());
 
         model.addAttribute("locationMap", locationMap);
         logger.info("Location data added as attribute for user with id: " + user.getId());
 
-        model.addAttribute("targetInfo",user.getTargets().get(targetId));
-        logger.info("TargetInfo added as attribute for target with index: " + targetId);
+        model.addAttribute("targetInfo",user.getTargets().get(targetIndex));
+        logger.info("TargetInfo added as attribute for target with index: " + targetIndex);
 
-        //target indexation
-        List<Integer> idList = new ArrayList<>();
+        //target indexation (Message.type = index, Message.message = surname + name)
+        List<IntegerWithString> indexList = new ArrayList<>();
         user.getTargets().forEach(
-                (target) -> idList.add(user.getTargets().indexOf(target) + 1)
+                (target) -> indexList.add(new IntegerWithString( user.getTargets().indexOf(target) + 1,
+                        target.getSurname() + " " + target.getName()))
         );
 
-        model.addAttribute("targetsId", idList);
+        model.addAttribute("targets", indexList);
         logger.info("Target positions list added as attribute for user with id: " + user.getId());
 
         model.addAttribute("api_key", API_KEY);

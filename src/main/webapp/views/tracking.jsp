@@ -41,6 +41,23 @@
         src="https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap">
 </script>
 
+<script>
+    function deleteFunction() {
+        var person = prompt("Please enter target index", "0");
+        if (person != null) {
+        }
+        console.log("/profile");
+        console.log(person);
+        deleteData(person, "/profile");
+    }
+    function deleteData(item, url) {
+        fetch(url + '/' + item, {
+            method: 'delete'
+        });
+        location.reload();
+    }
+</script>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="keywords" content="" />
@@ -122,10 +139,10 @@
                             <button class="halfButton">+</button>
                         </div>
                         <div class="inlineDiv">
-                            <button class="halfButton">-</button>
+                            <button class="halfButton" onclick="deleteFunction()">-</button>
                         </div>
-                            <c:forEach items="${targetsId}" var = "targetId">
-                            <button class="testButton" onclick="location.href = '/tracking/${targetId}';">${targetId}</button>
+                            <c:forEach items="${targets}" var = "target">
+                            <button class="testButton" onclick="location.href = '/tracking/${target.i}';">${target.i}. ${target.s}</button>
                         </c:forEach>
 
                     </div>
