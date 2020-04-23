@@ -53,8 +53,8 @@
     function deleteData(item, url) {
         fetch(url + '/' + item, {
             method: 'delete'
-        });
-        location.reload();
+        }).then((data) => window.location.replace("/tracking"));
+        //location.reload();
     }
 </script>
 
@@ -136,7 +136,7 @@
 
                     <div class = "center_add_target">
                         <div class="inlineDiv">
-                            <button class="halfButton">+</button>
+                            <button class="halfButton" onclick="location.href = '/adding'">+</button>
                         </div>
                         <div class="inlineDiv">
                             <button class="halfButton" onclick="deleteFunction()">-</button>

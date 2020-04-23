@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .mvcMatchers("/profile","/tracking").authenticated()
+                .mvcMatchers("/profile","/tracking","/adding").authenticated()
                 .mvcMatchers("/android/**","/create","/about","/","/login").permitAll()
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/profile", true).permitAll()

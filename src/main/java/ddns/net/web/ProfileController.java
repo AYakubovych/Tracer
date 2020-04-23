@@ -83,12 +83,13 @@ public class ProfileController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "/{index}")
-    public void deleteTarget(@PathVariable int index,
-                             HttpServletRequest request){
+    public ModelAndView deleteTarget(@PathVariable int index,
+                            HttpServletRequest request){
         logger.info("delete");
         User user = userService.findOneByEmail(request.getRemoteUser());
         user.getTargets().remove(index - 1);
         userService.save(user);
+        return new ModelAndView("tracking");
     }
 
     @ModelAttribute
