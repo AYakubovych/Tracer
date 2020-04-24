@@ -136,10 +136,14 @@
 
                     <div class = "center_add_target">
                         <div class="inlineDiv">
-                            <button class="halfButton" onclick="location.href = '/adding'">+</button>
+                            <button class="halfButton"
+                                    style="background: #204969;color: white"
+                                    onclick="location.href = '/adding'">Add</button>
                         </div>
                         <div class="inlineDiv">
-                            <button class="halfButton" onclick="deleteFunction()">-</button>
+                            <button class="halfButton"
+                                    style="background: #A80038;color: white"
+                                    onclick="deleteFunction()">Remove</button>
                         </div>
                             <c:forEach items="${targets}" var = "target">
                             <button class="testButton" onclick="location.href = '/tracking/${target.i}';">${target.i}. ${target.s}</button>

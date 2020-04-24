@@ -1,0 +1,21 @@
+.text {
+    color: #204969;
+    font-size: 18px ;
+    float: left;
+    margin-left: 16px;
+}
+.textarea{
+    height:140px;
+    margin-left: 16px;
+    margin-top: -14px;
+    font-size: 18px
+}
+.feedBackButton{
+    background: #204969;
+    margin-left: 16px;
+    margin-top: 16px;
+    height: 46px;
+    width: 248px;
+    color: white;
+    padding-right: 100px;
+}

@@ -47,6 +47,7 @@
     <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/styles/style.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="${pageContext.request.contextPath}/styles/main.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="${pageContext.request.contextPath}/styles/index.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
 
@@ -76,6 +77,11 @@
 
         <div class = "center_main_left">
             <div class="main_left">
+                <h4 class="text">If you have something to say. Please do it.</h4>
+                <form method="get" action="${pageContext.request.contextPath}/mail">
+                    <textarea name="text" id="text" class="textarea" placeholder=" Write here.." cols="48"></textarea>
+                    <input class="feedBackButton" type="submit" value="Send feedback"/>
+                </form>
 
             </div>
         </div>

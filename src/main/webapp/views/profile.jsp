@@ -63,7 +63,7 @@
 
                 <c:choose>
                     <c:when test="${user.targets.size() > 0}">
-                        <h4 class="in_box_text">${tracking}: ${user.targets.get(0).name}</h4>
+                        <h4 class="in_box_text">${tracking}: ${user.targets.size()}</h4>
                         <form action="${pageContext.request.contextPath}/tracking">
                         <button class="submit_button" type="submit">Map</button>
                         </form>
